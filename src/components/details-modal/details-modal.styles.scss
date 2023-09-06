@@ -1,0 +1,22 @@
+.swal2-title {
+    font-size: 20px;
+    color: rgb(201, 214, 222) !important;
+}
+
+.swal2-popup {
+    background-color: rgb(39, 2, 57) !important;
+    border-radius: 10px; 
+    color: rgb(201, 214, 222);
+}
+
+.swal2-confirm {
+    border: none !important;
+    background-color: rgb(7, 3, 55) !important;
+    &:hover {
+        background-color: rgb(1,43,67) !important;
+    }
+}
+
+.swal2-cancel {
+    background-color: grey !important;
+}

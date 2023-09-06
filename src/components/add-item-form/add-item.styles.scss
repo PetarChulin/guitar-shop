@@ -1,0 +1,27 @@
+.add-item-container {
+  padding-top: 50px;
+  border: 4px double rgb(184, 155, 213);
+  border-radius: 8px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  flex-direction: column;
+  width: 380px;
+
+
+  h2 {
+    margin: 5px 0;
+  }
+
+  span {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .buttons-container {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+}
