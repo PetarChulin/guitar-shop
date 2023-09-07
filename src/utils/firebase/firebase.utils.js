@@ -26,12 +26,12 @@ import {
 import ConfirmModal from "../../components/confirm-modal/confirm-modal";
 
 const firebaseConfig = {
-  apiKey: "your_apiKey",
-  authDomain: "your_authDomain",
-  projectId: "your_projectId",
-  storageBucket: "your_storageBucket",
-  messagingSenderId: "your_messagingSenderId",
-  appId: "your_appId",
+  apiKey: "AIzaSyCps0uPOIXjoKekMtNdP5gwvtw67Xf_my4",
+  authDomain: "crwn-clothing-dc5c6.firebaseapp.com",
+  projectId: "crwn-clothing-dc5c6",
+  storageBucket: "crwn-clothing-dc5c6.appspot.com",
+  messagingSenderId: "631885272413",
+  appId: "1:631885272413:web:a3827099d698e92b0544b4"
 };
 
 
