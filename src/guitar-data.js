@@ -60,7 +60,7 @@ const GUITAR_DATA = [
         price: 5800,
       },
       {
-        id: 9,
+        id: 13,
         name: 'Epiphone Les Paul',
         description: 'Special-I Limited-Edition Electric Guitar Worn Pelham Blue',
         imageUrl: 'https://media.guitarcenter.com/is/image/MMGS7/H71861000005000-00-600x600.jpg',
