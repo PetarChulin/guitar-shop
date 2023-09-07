@@ -9,3 +9,6 @@ This project is under development and constant addition of new functionalities, 
 To run the project download it open in some IDE (I preffer VSCode) and run "npm install" then "npm start" in terminal.
 You have to have NPM installed on your system as well as Firebase Project with Firestore Database created (it is simple and free to create one) and Firebase Authentication with Email/Password and Google sign-in methods enabled.
 All you have to do next is to navigate to /src/utils/firebase/firebase.utils.js and replace the values ​​from line 29 to line 34 with your own found in the section "Project Settings" in your Firebase Project.
+
+![Cloud firestore](firestore.png)
+![Authentication](auth.png)
