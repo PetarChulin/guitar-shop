@@ -26,7 +26,7 @@ import {
 import ConfirmModal from "../../components/confirm-modal/confirm-modal";
 
 const firebaseConfig = {
-  apiKey: "your_",
+  apiKey: "your_apiKey",
   authDomain: "your_authDomain",
   projectId: "your_projectId",
   storageBucket: "your_storageBucket",
