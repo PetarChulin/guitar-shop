@@ -1,5 +1,4 @@
 /node_modules
-/src/utils/firebase/firebase.utils.js
 .alpackages
 .vscode
 *.app
