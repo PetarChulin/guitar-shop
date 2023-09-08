@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import './checkout.styles.scss';
 
 const Checkout = () => {
-  const { cartItems, cartTotal } = useContext(CartContext);
+  const { cartItems, setCartItems, cartTotal } = useContext(CartContext);
 
   const buyAll = () => {
 
@@ -24,10 +24,18 @@ const Checkout = () => {
     </div>
   `;
 
-  Swal.fire({
-    html: cartItemsHtml
-  });
-  
+    Swal.fire({
+      html: cartItemsHtml,
+      showDenyButton: true,
+      confirmButtonText: 'Buy',
+      denyButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setCartItems([]);
+      } else if (result.isDenied) {
+        return;
+      }
+    });
   };
 
   return (

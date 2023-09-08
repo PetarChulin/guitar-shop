@@ -1,4 +1,5 @@
 import { React, Fragment, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
@@ -8,7 +9,6 @@ import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
 import { AdminContext } from "../../contexts/admin.context";
 
-import { ReactSVG } from "react-svg";
 import { default as Guitar} from "../../assets/guitar-logo.png"
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
@@ -18,8 +18,9 @@ import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
 const Navigation = () => {
   const { currentUser, username, setUsername } = useContext(UserContext);
   const { isCartOpen, setCartCount } = useContext(CartContext);
-  const { user } = useContext(UserContext);
   const { isAdmin, setIsAdmin } = useContext(AdminContext);
+
+  const navigate = useNavigate();
 
   const setAdminFalse = () => {
     setIsAdmin(false);
@@ -32,6 +33,8 @@ const Navigation = () => {
     setIsAdmin(false);
     setUsername("");
     setCartCount(0);
+    navigate('/')
+
   };
 
 
