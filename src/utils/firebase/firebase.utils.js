@@ -24,6 +24,7 @@ import {
 } from "firebase/firestore";
 
 import ConfirmModal from "../../components/confirm-modal/confirm-modal";
+import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
 
 const firebaseConfig = {
   apiKey: "your_apiKey",
@@ -31,7 +32,7 @@ const firebaseConfig = {
   projectId: "your_projectId",
   storageBucket: "your_storageBucket",
   messagingSenderId: "your_messagingSenderId",
-  appId: "your_appId",
+  appId: "your_appId"
 };
 
 
@@ -44,10 +45,19 @@ googleProvider.getCustomParameters({
 });
 
 export const auth = getAuth();
-// export const userAuth = getAuth(firebaseApp);
 
-export const signInWithGooglePopup = () =>
-  signInWithPopup(auth, googleProvider);
+export const signInWithGooglePopup = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+    const email = user.email;
+    localStorage.setItem('email' , email);
+    SignInOutToast(email, 'signed in successfully.', "success", "bottom-left");
+
+  } catch (error) {
+    console.error('Error signing in with Google:', error);
+  }
+}
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
@@ -80,13 +90,10 @@ export const addItemToDocument = async (collectionName, documentId, newItemData)
     if (docSnapshot.exists()) {
       const existingData = docSnapshot.data();
 
-      // Get the array field you want to update (e.g., 'items')
-      const existingItems = existingData.items || []; // If 'items' field doesn't exist, initialize it as an empty array
+      const existingItems = existingData.items || []; 
 
-      // Update the local array by pushing the new item to it
       const updatedItems = [...existingItems, newItemData];
 
-      // Update the document with the updated array field
       await updateDoc(docRef, { items: updatedItems });
       ConfirmModal(`${newItemData.name} added to the ${CATEGORY} field successfully! Please refresh the page.`, '', 'success', 3000);
       console.log("Item added to the document's array field successfully!");
@@ -103,17 +110,14 @@ export const addItemToDocument = async (collectionName, documentId, newItemData)
 
 export const fetchData = async (collectionName, documentId) => {
   
-  // Create a reference to the specific document
   const documentRef = doc(db, collectionName, documentId);
 
-  // Fetch the data from the document
   const getData = async () => {
     try {
       const documentSnapshot = await getDoc(documentRef);
 
       if (documentSnapshot.exists()) {
         const data = documentSnapshot.data();
-        // 'data' now contains the content of the document
         console.log('Document data:', data);
       } else {
         console.log('Document does not exist');
@@ -123,33 +127,24 @@ export const fetchData = async (collectionName, documentId) => {
     }
   };
 
-  // Call the function to fetch the data
   getData();
 };
 
 export const removeItemFromDocument = async (collectionName, documentId, itemIdToRemove, itemName) => {
 
-  console.log(documentId);
-
   const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
 
   try {
-    // Get a reference to the document you want to update
     const docRef = doc(db, collectionName, documentId);
 
-    // Fetch the existing data of the document
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
-      // Get the data of the existing document
       const existingData = docSnapshot.data();
 
-      // Get the array field you want to update (e.g., 'items')
-      const existingItems = existingData.items || []; // If 'items' field doesn't exist, initialize it as an empty array
+      const existingItems = existingData.items || []; 
 
-      // Update the local array by filtering out the item to remove
       const updatedItems = existingItems.filter((item) => item.id !== itemIdToRemove);
 
-      // Update the document with the updated array field
       await updateDoc(docRef, { items: updatedItems });
       console.log(`"${itemName}" removed from the ${CATEGORY}'s array field successfully!`);
     } else {
@@ -233,9 +228,7 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signOutUser = async () => {
   await signOut(auth).then(() => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("email");
-    localStorage.removeItem("userItems");
+    localStorage.clear();
     console.log("User signed out successfully.");
   });
 };
@@ -246,15 +239,12 @@ export const onAuthStateChangedListener = (callback) =>
 export const removeCollection = async (collectionKey) => {
   const collectionRef = collection(db, collectionKey);
 
-  // Step 1: Get all the documents in the collection
   const querySnapshot = await getDocs(collectionRef);
 
-  // Step 2: Delete all the documents
   const deletePromises = querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
 
   await Promise.all(deletePromises);
 
-  // Step 3: Delete the collection itself
   await deleteDoc(collectionRef);
 
   console.log("Collection removed:", collectionKey);
@@ -287,22 +277,17 @@ export const removeItemFromSectionById = async (
 ) => {
   const collectionRef = doc(db, collectionKey);
 
-  // Step 1: Get the current data from the collection document
   const collectionSnapshot = await getDoc(collectionRef);
   const collectionData = collectionSnapshot.data();
 
-  // Step 2: Check if the section exists in the collection
   if (sectionTitle in collectionData) {
     const sectionArray = collectionData[sectionTitle];
 
-    // Step 3: Find the index of the item with the specified id
     const itemIndex = sectionArray.findIndex((item) => item.name === itemName);
 
     if (itemIndex !== -1) {
-      // Step 4: Remove the item from the array
       sectionArray.splice(itemIndex, 1);
 
-      // Step 5: Update the section in Firestore
       await setDoc(collectionRef, { [sectionTitle]: sectionArray });
 
       console.log(
