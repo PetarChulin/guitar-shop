@@ -80,7 +80,7 @@ const InputFormAddItem = () => {
           step="1"
         />
         <div className="buttons-container">
-          <Button type="submit">Add product</Button>
+          <Button type="submit" buttonType='neon'>Add product</Button>
         </div>
 
       </form>

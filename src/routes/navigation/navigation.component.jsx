@@ -17,7 +17,7 @@ import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
 
 const Navigation = () => {
   const { currentUser, username, setUsername } = useContext(UserContext);
-  const { isCartOpen, setCartCount } = useContext(CartContext);
+  const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
   const { isAdmin, setIsAdmin } = useContext(AdminContext);
 
   const navigate = useNavigate();
@@ -33,8 +33,8 @@ const Navigation = () => {
     setIsAdmin(false);
     setUsername("");
     setCartCount(0);
-    navigate('/')
-
+    setCartItems([]);
+    navigate('/');
   };
 
 

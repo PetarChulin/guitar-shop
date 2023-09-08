@@ -25,7 +25,6 @@ export const UserProvider = ({ children }) => {
         setUsername(user.email);
       }
       setCurrentUser(user);
-      console.log(user);
     });
 
     return unsubscribe;

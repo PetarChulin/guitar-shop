@@ -44,6 +44,8 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
+    navigate('/shop');
+
   };
 
   const handleSubmit = async (event) => {

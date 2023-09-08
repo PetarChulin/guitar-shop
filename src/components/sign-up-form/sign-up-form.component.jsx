@@ -49,12 +49,8 @@ const SignUpForm = () => {
       ConfirmModal(`User ${displayName} successfully created!`, '','', 3000);
       navigate('/shop');
     } catch (error) {
-      // if (error.code === 'auth/email-already-in-use') {
         let errorText = error.toString().split('/')[1].replace(/[^a-zA-Z ]/g, " ").toUpperCase();
         ConfirmModal('Cannot create user' , errorText);
-      // } else {
-      //   console.log('user creation encountered an error', error);
-      // }
     }
   };
 
@@ -105,7 +101,7 @@ const SignUpForm = () => {
           value={confirmPassword}
         />
         <div className='button-container-sign-up'>
-        <Button type='submit'>Sign Up</Button>
+        <Button type='submit' buttonType='neon'>Sign Up</Button>
         </div>
       </form>
     </div>
