@@ -1,4 +1,8 @@
 /node_modules
+/build
+/.firebase
+/.firebaserc
+/firebase.json
 .alpackages
 .vscode
 *.app
