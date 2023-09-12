@@ -21,11 +21,11 @@ import ProductCard from "../../components/product-card/product-card.component";
 const Navigation = () => {
   const { currentUser, username, setUsername } = useContext(UserContext);
   const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
-  const { isAdmin, setIsAdmin } = useContext(AdminContext);
+  const { isAdmin, setIsAdmin, searchField, setSearchField } = useContext(AdminContext);
 
   const [names, setNames] = useState([]);
   const [filteredNames, setFilteredNames] = useState([]);
-  const [searchField, setSearchField] = useState('');
+  // const [searchField, setSearchField] = useState('');
 
 
   const navigate = useNavigate();
@@ -76,8 +76,11 @@ const Navigation = () => {
   };
 
   const clearSearchField = () => {
+    
     setSearchField('');
-    inputRef.current.value = '';
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
   };
 
   const setAdminFalse = () => {
@@ -121,16 +124,16 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
-          <CartIcon clearOpen={clearSearchField} />
+          {!isAdmin && <CartIcon clearOpen={clearSearchField} />}
         </div>
-        <span className="search-input">
-          <input id="search" type="search" ref={inputRef} onChange={onSearchChange} placeholder="Search guitars: e.g. Fender"/>
-        </span>
+        {!isAdmin && <span className="search-input">
+          <input id="search" type="search" ref={inputRef} onChange={onSearchChange} placeholder="Search guitars: e.g. Fender" />
+        </span>}
         {isCartOpen && <CartDropdown />}
       </div>
       {searchField.length > 0 &&
         <>
-        <p className="result">Results for {searchField} :</p>
+          <p className="result">Results for {searchField} :</p>
           <div className="filtered-items-container">
             {filteredNames.map((product) => (
               <ul className="filtered-product"><ProductCard key={product.id} product={product}

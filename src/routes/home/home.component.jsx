@@ -22,7 +22,7 @@ const Home = () => {
     },
     {
       id: 4,
-      title: 'Amps',
+      title: 'Amplifiers',
       imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-03.jpeg',
     },
     {

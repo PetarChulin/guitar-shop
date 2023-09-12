@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { AdminContext } from "../../contexts/admin.context";
+
 import "./directory-item.styles.scss";
 
 // import {default as Electric} from '../../sounds/electric-guitar.wav';
@@ -8,8 +10,12 @@ const DirectoryItem = ({ category }) => {
 
 
   // const audioRef = useRef(null);
-
+  const { searchField, setSearchField } = useContext(AdminContext);
   const { imageUrl, title } = category;
+
+  const clearSearchField = () => {
+    setSearchField('');
+  };
 
   let productType = title.toString().split(" ")[0].toLowerCase();
   const array = title.toString().split(" ");
@@ -22,7 +28,7 @@ const DirectoryItem = ({ category }) => {
   if(arraySize === 2) {
     productType = productType.concat('_guitars')
   }
-  console.log(productType);
+
   return (
     <>
     <div className="directory-item-container">
@@ -35,6 +41,7 @@ const DirectoryItem = ({ category }) => {
       <div className="body">
         <Link to={`/shop/${productType}`}
         //  onMouseEnter={playSound}
+        onClick={clearSearchField}
          >
           <h2>{title}</h2>
           <p>Shop Now</p>
