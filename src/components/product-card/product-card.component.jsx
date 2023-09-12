@@ -11,7 +11,7 @@ import { removeItemFromDocument } from "../../utils/firebase/firebase.utils";
 import "./product-card.styles.scss";
 
 const ProductCard = ({ product, documentId }) => {
-  const { id, name, price, imageUrl, description } = product;
+  const { id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
   const { addItemToCart, removeItemToCart, cartItems } = useContext(CartContext);
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
@@ -21,8 +21,9 @@ const ProductCard = ({ product, documentId }) => {
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const addProductToCart = () => addItemToCart(product);
-  const removeProductFromCart = () => {removeItemToCart(product);
-  
+  const removeProductFromCart = () => {
+    removeItemToCart(product);
+
   }
 
   const handleRemoveItem = async (itemId) => {
@@ -73,7 +74,7 @@ const ProductCard = ({ product, documentId }) => {
       <img src={imageUrl} alt={`${name}`} />
       <div className="footer">
         <span className="name">{name}</span>
-        <span className="price">{`Price: ${price} $`}</span>
+        {showPrice && <span className="price">{`Price: ${price} $`}</span>}
         <div></div>
       </div>
       {isAdmin ? (
@@ -81,7 +82,7 @@ const ProductCard = ({ product, documentId }) => {
       ) : (
         <>
           <Button style={{ top: '30px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
-          {currentUser && <>
+          {currentUser && showBtns && <>
             <Button buttonType="neon" onClick={addProductToCart}>
               Add to cart
             </Button>

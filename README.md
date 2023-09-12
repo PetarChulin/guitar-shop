@@ -1,7 +1,7 @@
 ## GUITAR SHOP 
 
 This is a simple demo app made with React. It uses Firebase/Firestore database to manage data.
-The purpose of the application is to demonstrate the very basic functionalities of an e-shop.
+The purpose of the application is to demonstrate the very basic functionalities of an e-shop using CRUD operations.
 You can register with email and password or log in with your Google account. After log in you can
 add or remove products to your cart as well as see details for chosen product. There is a predifined
 admin account which can add/delete items to/from database. If you want to try admin access please 
