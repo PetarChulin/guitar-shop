@@ -68,10 +68,13 @@
       width: 210px;
       height: 30px;
       border-radius: 6px;
-      background-color: rgb(86, 66, 105);
-      // background-color:rgb(86, 66, 105);
+      background-color: rgb(143, 115, 169);
       color: rgb(255, 255, 255);
 
+    }
+    ::placeholder{
+      color: rgb(255, 255, 255);
+      opacity: 1;
     }
 
     input:focus {
@@ -90,6 +93,7 @@
   border: solid 2px rgb(44, 6, 44);
   border-radius: 26px;
   padding: 50px;
+  margin-top: 85px;
   margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -100,16 +104,20 @@
   gap: 10px;
 
 
-  p {
-    position: absolute;
-    padding-bottom: 30px;
-    font-size: 50px;
-    color: aliceblue;
-  }
-
+  
   ul {
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
   }
+}
+.result {
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: aliceblue;
 }

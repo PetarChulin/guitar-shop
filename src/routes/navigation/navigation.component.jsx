@@ -1,4 +1,4 @@
-import { React, Fragment, useContext, useEffect, useState } from "react";
+import { React, Fragment, useContext, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Outlet, Link } from "react-router-dom";
 
@@ -24,12 +24,12 @@ const Navigation = () => {
   const { isAdmin, setIsAdmin } = useContext(AdminContext);
 
   const [names, setNames] = useState([]);
-  // const [searched, setSearched] = useState("");
   const [filteredNames, setFilteredNames] = useState([]);
   const [searchField, setSearchField] = useState('');
 
 
   const navigate = useNavigate();
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,25 +64,20 @@ const Navigation = () => {
     setFilteredNames(newFilteredNames);
   }, [names, searchField]);
 
+  let timeout;
   const onSearchChange = (event) => {
     const searchFieldString = event.target.value.toLocaleLowerCase();
-    setSearchField(searchFieldString);
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      setSearchField(searchFieldString);
+    }, 1500);
   };
-
-  // const onEnterText = (e) => {
-  //   setSearched(e.target.value.toLocaleLowerCase());
-  // };
-
-  // const search = () => {
-  //   const newFilteredNames = names.filter((item) => {
-  //     return item.name.toLowerCase().includes(searched.toLowerCase());
-  //   });
-  //   setFilteredNames(newFilteredNames);
-  // };
 
   const clearSearchField = () => {
     setSearchField('');
-    console.log('cleared');
+    inputRef.current.value = '';
   };
 
   const setAdminFalse = () => {
@@ -129,18 +124,21 @@ const Navigation = () => {
           <CartIcon clearOpen={clearSearchField} />
         </div>
         <span className="search-input">
-          <input type="search" onChange={onSearchChange} placeholder="Search: e.g. Fender" />
+          <input id="search" type="search" ref={inputRef} onChange={onSearchChange} placeholder="Search guitars: e.g. Fender" />
           {/* <Button onClick={search}>Search</Button> */}
         </span>
         {isCartOpen && <CartDropdown />}
       </div>
-      {searchField.length > 0 && <div className="filtered-items-container">
-        <p>Results for {searchField} :</p>
-        {filteredNames.map((product) => (
-          <ul className="filtered-product"><ProductCard key={product.id} product={product}
-            showPrice={product.showPrice = false} showBtns={product.showBtns = false} /></ul>
-        ))}
-      </div>}
+      {searchField.length > 0 &&
+        <>
+        <p className="result">Results for {searchField} :</p>
+          <div className="filtered-items-container">
+            {filteredNames.map((product) => (
+              <ul className="filtered-product"><ProductCard key={product.id} product={product}
+                showPrice={product.showPrice = false} showBtns={product.showBtns = false} /></ul>
+            ))}
+          </div>
+        </>}
       <Outlet />
     </Fragment>
   );
