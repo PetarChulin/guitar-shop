@@ -63,18 +63,21 @@
     bottom: 10px;
 
     input {
-      border: solid 1px;
+      border: 0;
       border-color: rgb(44, 6, 44);
       width: 210px;
       height: 30px;
       border-radius: 6px;
-      background-color: rgb(143, 115, 169);
+      background-color: rgb(55, 31, 79);
       color: rgb(255, 255, 255);
 
     }
     ::placeholder{
-      color: rgb(255, 255, 255);
+      color: rgb(146, 142, 142);
       opacity: 1;
+    }
+    :focus::placeholder {
+      color: transparent;
     }
 
     input:focus {

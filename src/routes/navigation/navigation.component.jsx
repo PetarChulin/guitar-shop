@@ -72,7 +72,7 @@ const Navigation = () => {
 
     timeout = setTimeout(() => {
       setSearchField(searchFieldString);
-    }, 1500);
+    }, 1200);
   };
 
   const clearSearchField = () => {
@@ -124,8 +124,7 @@ const Navigation = () => {
           <CartIcon clearOpen={clearSearchField} />
         </div>
         <span className="search-input">
-          <input id="search" type="search" ref={inputRef} onChange={onSearchChange} placeholder="Search guitars: e.g. Fender" />
-          {/* <Button onClick={search}>Search</Button> */}
+          <input id="search" type="search" ref={inputRef} onChange={onSearchChange} placeholder="Search guitars: e.g. Fender"/>
         </span>
         {isCartOpen && <CartDropdown />}
       </div>
