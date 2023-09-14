@@ -25,7 +25,6 @@ const Navigation = () => {
 
   const [names, setNames] = useState([]);
   const [filteredNames, setFilteredNames] = useState([]);
-  // const [searchField, setSearchField] = useState('');
 
 
   const navigate = useNavigate();
