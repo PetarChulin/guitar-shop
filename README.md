@@ -17,6 +17,7 @@ and Firebase Authentication with Email/Password and Google sign-in methods enabl
 All you have to do next is to navigate to /src/utils/firebase/firebase.utils.js and replace 
 the values ​​from line 29 to line 34 with your own found in the section "Project Settings" in your Firebase Project.
 
+![Home page](home.png)
+![Signin page](signin-up-page.png)
 ![Cloud firestore](firestore.png)
 ![Authentication](auth.png)
-![Home page](home.png)
