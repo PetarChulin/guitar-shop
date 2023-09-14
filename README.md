@@ -19,3 +19,4 @@ the values ​​from line 29 to line 34 with your own found in the section "Pro
 
 ![Cloud firestore](firestore.png)
 ![Authentication](auth.png)
+![Home page](home.png)
