@@ -47,13 +47,13 @@
   }
 
   &.neon {
-    background-color: rgb(36, 15, 42);
-    color: rgb(181, 80, 239);
-    border: 1px solid rgb(181, 80, 239);
+    background-color: rgb(19, 31, 54);
+    color: rgb(80, 170, 239);
+    border: 1px solid rgb(80, 170, 239);
 
     &:hover {
-      background-color: rgb(181, 80, 239);
-      color: rgb(36, 15, 42);
+      background-color: rgb(80, 170, 239);
+      color: rgb(19, 31, 54);
     }
   }
 }
@@ -61,7 +61,7 @@
 
   position: fixed;
   border: 0px;
-  background-color:  rgb(181, 80, 239, 0.5);
+  background-color:  rgba(107, 80, 239, 0.5);
   border-radius: 100px;
   padding: 1rem 2rem;
   font-size: 15px;
@@ -72,7 +72,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(181, 80, 239);
+    background-color: rgb(80, 141, 239);
     color: rgb(36, 15, 42);
   }
 }

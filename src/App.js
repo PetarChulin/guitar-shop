@@ -8,6 +8,7 @@ import InputFormAddItem from './components/add-item-form/form-input-add-item';
 import SignInForm from './components/sign-in-form/sign-in-form.component';
 import SignUpForm from './components/sign-up-form/sign-up-form.component';
 import Button from './components/button/button.component';
+import Footer from './routes/footer/footer.component';
 
 const App = () => {
 
@@ -28,21 +29,22 @@ const App = () => {
 
   return (
     <>
-    <Routes>
-      <Route path='/' element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path='shop/*' element={<Shop />} />
-        <Route path='signin' element={<SignInForm />} />
-        <Route path='signup' element={<SignUpForm />} />
-        <Route path='checkout' element={<Checkout />} />
-        <Route path='admin/*' element={<Shop />} />
-        <Route path='add-item-input-form' element={<InputFormAddItem />} />
-      </Route>
-    </Routes>
-    {showBtn &&
-      <Button buttonType='neon' className='scroll-to-top-btn'
-        onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Top</Button>
-    }
+      <Routes>
+        <Route path='/' element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path='shop/*' element={<Shop />} />
+          <Route path='signin' element={<SignInForm />} />
+          <Route path='signup' element={<SignUpForm />} />
+          <Route path='checkout' element={<Checkout />} />
+          <Route path='admin/*' element={<Shop />} />
+          <Route path='add-item-input-form' element={<InputFormAddItem />} />
+        </Route>
+      </Routes>
+      <Footer/>
+      {showBtn &&
+        <Button buttonType='neon' className='scroll-to-top-btn'
+          onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Top</Button>
+      }
     </>
   );
 };

@@ -4,10 +4,27 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:rgb(86, 66, 105);
-  // background-color: rgb(30, 40, 62);
+  background-color: rgb(19, 54, 66);
+  // background-color: rgb(11, 32, 39);
 }
 
+footer {
+  // background-color: darkgrey;
+  border-radius: 8px;
+  color: rgb(131, 158, 183);
+  font-weight: bold;
+  text-align: center;
+  position: fixed;
+  overflow-y: auto;
+  z-index: 50;
+  width: 100%;
+  bottom: 0px;
+  padding: 8px;
+
+  a {
+    color: rgb(131, 158, 183);
+  }
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
