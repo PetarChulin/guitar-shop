@@ -19,10 +19,7 @@ of new functionalities, but it is fully operational.
 
 You can access the project on: https://guitars-shop.web.app
                     or
-download repository from "<>Code" button open it in some IDE (I preffer and recommend VSCode)
-and run "npm install" then "npm start" in terminal and app will start on 'http://localhost:3000'.You have to have NPM installed on your
-system as well as Firebase Project with Firestore Database created (it is simple and free to create one)
-and Firebase Authentication with Email/Password and Google sign-in methods enabled.
+download repository from "<>Code" button open it in some IDE (I prefer and recommend VSCode) and run "npm install" then "npm start" in the terminal and the app will start on 'http://localhost:3000'.  You must have NPM installed on your system and Firebase Project with Firestore Database created (it is simple and free to create one). You need also Firebase Authentication with Email/Password and Google sign-in methods enabled.
 All you have to do next is to navigate to /src/utils/firebase/firebase.utils.js and replace 
 the values ​​from line 29 to line 34 with your own found in the section "Project Settings" in your Firebase Project.
 
