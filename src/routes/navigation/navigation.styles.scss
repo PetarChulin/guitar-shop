@@ -93,7 +93,7 @@
 .filtered-items-container {
   margin-top: 30px;
   position: relative;
-  border: solid 2px rgb(44, 6, 44);
+  border: solid 2px rgb(23, 125, 161);
   border-radius: 26px;
   padding: 50px;
   margin-top: 85px;
@@ -105,8 +105,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
-
-
   
   ul {
     padding: 10px;
@@ -116,11 +114,12 @@
 }
 .result {
   margin: 0;
+  padding-bottom: 30px;
   position: absolute;
   top: 40%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   font-size: 40px;
-  color: aliceblue;
+  color: rgb(37, 135, 222);
 }
