@@ -6,6 +6,7 @@
   
   img {
     width: 30%;
+    border-radius: 6px;
   }
   
   .item-details {
@@ -15,6 +16,7 @@
     align-items: flex-start;
     justify-content: center;
     padding: 10px 20px;
+    
 
     .name {
       font-size: 16px;
