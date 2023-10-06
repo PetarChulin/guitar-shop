@@ -29,6 +29,5 @@ the values ​​from line 29 to line 34 with your own found in the section "Pro
 # <p id="screens">Screenshots</p>
 
 ![Home page](home.png)
-![Signin page](signin-up-page.png)
 ![Cloud firestore](firestore.png)
 ![Authentication](auth.png)
