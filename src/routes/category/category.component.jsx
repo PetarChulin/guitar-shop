@@ -6,7 +6,7 @@ import ProductCard from "../../components/product-card/product-card.component";
 import Button from "../../components/button/button.component";
 
 import { CategoriesContext } from "../../contexts/categories.context";
-import { removeSectionFromCollection } from "../../utils/firebase/firebase.utils";
+import { getCategoriesAndDocuments, removeSectionFromCollection } from "../../utils/firebase/firebase.utils";
 
 import { AdminContext } from "../../contexts/admin.context";
 import { TypeContext } from "../../contexts/type.context";
@@ -45,8 +45,8 @@ const Category = () => {
   };
 
   useEffect(() => {
-    setProducts(categoriesMap[category]);
-    window.scrollTo({ top: 0, behavior: 'instant' });
+      setProducts(categoriesMap[category]);
+      window.scrollTo({ top: 0, behavior: 'instant' });
   }, [category, categoriesMap]);
 
 

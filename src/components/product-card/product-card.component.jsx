@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 import Button from "../button/button.component";
 
@@ -6,25 +7,38 @@ import { CartContext } from "../../contexts/cart.context";
 import { AdminContext } from "../../contexts/admin.context";
 import { UserContext } from "../../contexts/user.context";
 
-import { removeItemFromDocument } from "../../utils/firebase/firebase.utils";
+import { editItemInDocument, removeItemFromDocument } from "../../utils/firebase/firebase.utils";
 
 import "./product-card.styles.scss";
+import { useNavigate } from "react-router-dom";
+import InputFormEditItem from "../edit-item-form/form-input-edit-item";
 
 const ProductCard = ({ product, documentId }) => {
   const { id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
   const { addItemToCart, removeItemToCart, cartItems } = useContext(CartContext);
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
 
   const cartItem = cartItems.find((item) => item.id === product.id);
 
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const addProductToCart = () => addItemToCart(product);
+
+
   const removeProductFromCart = () => {
     removeItemToCart(product);
+  };
 
-  }
+  const handleEditItem = async () => {
+    setShowEditForm(true);
+  };
+
+  const handleShowButtons = () => {
+    setShowButtons(true);
+  };
 
   const handleRemoveItem = async (itemId) => {
 
@@ -70,18 +84,22 @@ const ProductCard = ({ product, documentId }) => {
   };
 
   return (
+    <>
     <div className="product-card-container">
-      <img src={imageUrl} alt={`${name}`} />
+      <img src={imageUrl} alt={`${name}`} onMouseEnter={setShowButtons}/>
       <div className="footer">
         <span className="name">{name}</span>
         {showPrice && <span className="price">{`Price: ${price} $`}</span>}
         <div></div>
       </div>
       {isAdmin ? (
-        <Button onClick={() => { handleRemoveItem(id) }}>Remove from DB</Button>
+        <>
+          <Button style={{ top: '200px' }} buttonType="remove" onClick={() => { handleRemoveItem(id) }}>Remove</Button>
+          <Button style={{ top: '260px' }} buttonType="edit" onClick={handleEditItem}>Edit</Button>
+        </>
       ) : (
         <>
-          <Button style={{ top: '30px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
+          <Button style={{ top: '180px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
           {currentUser && showBtns && <>
             <Button buttonType="neon" onClick={addProductToCart}>
               Add to cart
@@ -93,6 +111,8 @@ const ProductCard = ({ product, documentId }) => {
         </>
       )}
     </div>
+      {showEditForm && <InputFormEditItem product={product} documentId={documentId} closeForm={() => setShowEditForm(false)}/>}
+      </>
   );
 };
 

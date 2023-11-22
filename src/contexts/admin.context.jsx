@@ -18,6 +18,7 @@ export const AdminProvider = ({ children }) => {
     return savedIsAdmin === 'true';
   });
 
+
   useEffect(() => {
     localStorage.setItem('isAdmin', isAdmin.toString());
   }, [isAdmin]);
@@ -34,7 +35,7 @@ export const AdminProvider = ({ children }) => {
   );
 };
 
-export const useAdminStatus = () => {
-  const { isAdmin, setIsAdmin } = useContext(AdminContext);
-  return { isAdmin, setIsAdmin };
-};
+// export const useAdminStatus = () => {
+//   const { isAdmin, setIsAdmin } = useContext(AdminContext);
+//   return { isAdmin, setIsAdmin };
+// };

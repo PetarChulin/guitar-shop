@@ -3,7 +3,9 @@ import "./button.styles.scss";
 export const BUTTON_TYPE_CLASSES = {
   google: "google-sign-in",
   inverted: "inverted",
-  neon: "neon"
+  neon: "neon",
+  edit: "edit",
+  remove: "remove"
 };
 
 const Button = ({ children, buttonType, ...otherProps }) => {

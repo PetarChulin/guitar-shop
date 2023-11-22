@@ -4,6 +4,7 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import { addItemToDocument, getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 import { TypeContext } from "../../contexts/type.context";
+import { CategoriesContext } from "../../contexts/categories.context";
 import './add-item.styles.scss'
 
 const defaultFormFields = {
@@ -17,6 +18,7 @@ const defaultFormFields = {
 const InputFormAddItem = () => {
 
   const { type } = useContext(TypeContext);
+  
   const navigate = useNavigate();
 
   const [formFields, setFormFields] = useState(defaultFormFields);
@@ -35,8 +37,10 @@ const InputFormAddItem = () => {
 
     const collectionName = "collections";
     const documentId = type;
+
     await addItemToDocument(collectionName, documentId, formFields);
-    await getCategoriesAndDocuments('collections');
+    const updatedCategories = await getCategoriesAndDocuments('collections');
+    // await getCategoriesAndDocuments('collections');
     navigate(`/admin/${documentId}`);
   };
 

@@ -1,16 +1,16 @@
-import { createContext, useState } from "react";
+// import { createContext, useState } from "react";
 
-export const UsernameContext = createContext({
-  user: () => "",
-  setUser: "",
-});
+// export const UsernameContext = createContext({
+//   user: () => "",
+//   setUser: "",
+// });
 
-export const UsernameProvider = ({ children }) => {
-  const [user, setUser] = useState();
-  const value = { user, setUser };
+// export const UsernameProvider = ({ children }) => {
+//   const [user, setUser] = useState();
+//   const value = { user, setUser };
 
 
-  return (
-    <UsernameContext.Provider value={value}>{children}</UsernameContext.Provider>
-  );
-};
+//   return (
+//     <UsernameContext.Provider value={value}>{children}</UsernameContext.Provider>
+//   );
+// };

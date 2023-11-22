@@ -21,7 +21,7 @@
   &:hover {
     background-color: white;
     color: black;
-    border: 1px solid black;
+    // border: 1px solid black;
   }
 
   &.google-sign-in {
@@ -34,26 +34,48 @@
     }
   }
 
-  &.inverted {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+  // &.inverted {
+  //   background-color: white;
+  //   color: black;
+  //   border: 1px solid black;
 
-    &:hover {
-      background-color: rgb(63, 56, 70);
-      color: white;
-      border: none;
-    }
-  }
+  //   &:hover {
+  //     background-color: rgb(63, 56, 70);
+  //     color: white;
+  //     border: none;
+  //   }
+  // }
 
   &.neon {
-    background-color: rgb(19, 31, 54);
+    background-color: rgb(31, 69, 81);
     color: rgb(80, 170, 239);
     border: 1px solid rgb(80, 170, 239);
 
     &:hover {
       background-color: rgb(80, 170, 239);
-      color: rgb(19, 31, 54);
+      color: rgb(31, 69, 81);
+    }
+  }
+
+  &.edit {
+    background-color: rgb(43, 201, 166);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color: rgb(31, 69, 81);
+    }
+  }
+
+  &.remove {
+    background-color: rgb(206, 54, 115);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+
+    &:hover {
+      background-color: rgb(255, 255, 255);
+      color:rgb(50, 3, 14);
     }
   }
 }
