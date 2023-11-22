@@ -14,9 +14,10 @@ import { AdminContext } from "../../contexts/admin.context";
 import { default as Guitar } from "../../assets/guitar-logo.png"
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
-import "./navigation.styles.scss";
 import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
 import ProductCard from "../../components/product-card/product-card.component";
+
+import "./navigation.styles.scss";
 
 const Navigation = () => {
   const { currentUser, username, setUsername } = useContext(UserContext);
