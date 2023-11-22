@@ -10,7 +10,6 @@ import { UserContext } from "../../contexts/user.context";
 import { editItemInDocument, removeItemFromDocument } from "../../utils/firebase/firebase.utils";
 
 import "./product-card.styles.scss";
-import { useNavigate } from "react-router-dom";
 import InputFormEditItem from "../edit-item-form/form-input-edit-item";
 
 const ProductCard = ({ product, documentId }) => {
@@ -19,7 +18,6 @@ const ProductCard = ({ product, documentId }) => {
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
   const [showEditForm, setShowEditForm] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
 
   const cartItem = cartItems.find((item) => item.id === product.id);
 
@@ -34,10 +32,6 @@ const ProductCard = ({ product, documentId }) => {
 
   const handleEditItem = async () => {
     setShowEditForm(true);
-  };
-
-  const handleShowButtons = () => {
-    setShowButtons(true);
   };
 
   const handleRemoveItem = async (itemId) => {
@@ -86,7 +80,7 @@ const ProductCard = ({ product, documentId }) => {
   return (
     <>
     <div className="product-card-container">
-      <img src={imageUrl} alt={`${name}`} onMouseEnter={setShowButtons}/>
+      <img src={imageUrl} alt={`${name}`}/>
       <div className="footer">
         <span className="name">{name}</span>
         {showPrice && <span className="price">{`Price: ${price} $`}</span>}
@@ -94,8 +88,8 @@ const ProductCard = ({ product, documentId }) => {
       </div>
       {isAdmin ? (
         <>
-          <Button style={{ top: '200px' }} buttonType="remove" onClick={() => { handleRemoveItem(id) }}>Remove</Button>
-          <Button style={{ top: '260px' }} buttonType="edit" onClick={handleEditItem}>Edit</Button>
+          <Button style={{ top: '200px' }} buttonType="neon" onClick={() => { handleRemoveItem(id) }}>Remove</Button>
+          <Button style={{ top: '260px' }} buttonType="neon" onClick={handleEditItem}>Edit</Button>
         </>
       ) : (
         <>

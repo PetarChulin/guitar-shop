@@ -6,7 +6,7 @@ import ProductCard from "../../components/product-card/product-card.component";
 import Button from "../../components/button/button.component";
 
 import { CategoriesContext } from "../../contexts/categories.context";
-import { getCategoriesAndDocuments, removeSectionFromCollection } from "../../utils/firebase/firebase.utils";
+import { removeSectionFromCollection } from "../../utils/firebase/firebase.utils";
 
 import { AdminContext } from "../../contexts/admin.context";
 import { TypeContext } from "../../contexts/type.context";

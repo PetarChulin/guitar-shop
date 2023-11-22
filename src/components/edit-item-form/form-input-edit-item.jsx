@@ -31,6 +31,7 @@ const InputFormEditItem = ({ product, documentId, closeForm }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         editItemInDocument('collections', documentId, product.id, updatedItem);
+        closeForm();
     };
 
 
