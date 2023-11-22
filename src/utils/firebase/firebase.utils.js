@@ -33,6 +33,7 @@ const firebaseConfig = {
   storageBucket: "your_storageBucket",
   messagingSenderId: "your_messagingSenderId",
   appId: "your_appId"
+
 };
 
 
@@ -51,15 +52,16 @@ export const signInWithGooglePopup = async () => {
     const result = await signInWithPopup(auth, googleProvider);
     const user = result.user;
     const email = user.email;
-    localStorage.setItem('email' , email);
+    localStorage.setItem('email', email);
     SignInOutToast(email, 'signed in successfully.', "success", "bottom-left");
 
   } catch (error) {
     console.error('Error signing in with Google:', error);
   }
 }
-export const signInWithGoogleRedirect = () =>
+export const signInWithGoogleRedirect = () => {
   signInWithRedirect(auth, googleProvider);
+}
 
 export const db = getFirestore();
 
@@ -90,7 +92,7 @@ export const addItemToDocument = async (collectionName, documentId, newItemData)
     if (docSnapshot.exists()) {
       const existingData = docSnapshot.data();
 
-      const existingItems = existingData.items || []; 
+      const existingItems = existingData.items || [];
 
       const updatedItems = [...existingItems, newItemData];
 
@@ -103,13 +105,47 @@ export const addItemToDocument = async (collectionName, documentId, newItemData)
   } catch (error) {
     console.error("Error adding item to document:", error);
   }
-
-
-
 };
 
+
+export const editItemInDocument = async (collectionName, documentId, itemId, updatedItemData) => {
+  const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
+
+  try {
+    const docRef = doc(db, collectionName, documentId);
+
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+      const existingData = docSnapshot.data();
+
+      const existingItems = existingData.items || [];
+
+      // Find the index of the item to be edited
+      const itemIndex = existingItems.findIndex(item => item.id === itemId);
+
+      if (itemIndex !== -1) {
+        // Update the specific item in the array
+        existingItems[itemIndex] = { ...existingItems[itemIndex], ...updatedItemData };
+
+        // Update the document with the modified items array
+        await updateDoc(docRef, { items: existingItems });
+        
+        ConfirmModal(`Item with ID ${itemId} in the ${CATEGORY} field updated successfully! Please refresh the page.`, '', 'success', 3000);
+        console.log("Item in the document's array field updated successfully!");
+      } else {
+        console.error("Item not found in the array.");
+      }
+    } else {
+      console.error("Document not found.");
+    }
+  } catch (error) {
+    console.error("Error updating item in document:", error);
+  }
+};
+
+
 export const fetchData = async (collectionName, documentId) => {
-  
+
   const documentRef = doc(db, collectionName, documentId);
 
   const getData = async () => {
@@ -130,10 +166,42 @@ export const fetchData = async (collectionName, documentId) => {
   getData();
 };
 
+export const fetchItemData = async (collectionName, documentId, itemId) => {
+  const documentRef = doc(db, collectionName, documentId);
+
+  const getItemData = async () => {
+    try {
+      const documentSnapshot = await getDoc(documentRef);
+
+      if (documentSnapshot.exists()) {
+        const result = documentSnapshot.data();
+        const data = result.items || [];
+
+        if (data && data.items) {
+          const item = data.items.find((item) => item.id === itemId);
+          console.log(item);
+          if (item) {
+            console.log('Item data:', item);
+          } else {
+            console.log('Item not found in document');
+          }
+        } else {
+          console.log('No items in the document');
+        }
+      } else {
+        console.log('Document does not exist');
+      }
+    } catch (error) {
+      console.error('Error fetching document:', error);
+    }
+  };
+
+  getItemData();
+};
+
 export const removeItemFromDocument = async (collectionName, documentId, itemIdToRemove, itemName) => {
 
   const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
-
   try {
     const docRef = doc(db, collectionName, documentId);
 
@@ -141,7 +209,7 @@ export const removeItemFromDocument = async (collectionName, documentId, itemIdT
     if (docSnapshot.exists()) {
       const existingData = docSnapshot.data();
 
-      const existingItems = existingData.items || []; 
+      const existingItems = existingData.items || [];
 
       const updatedItems = existingItems.filter((item) => item.id !== itemIdToRemove);
 
@@ -161,11 +229,13 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+  const categoryMap = {};
+
+  querySnapshot.forEach((docSnapshot) => {
     const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+    const lowercaseTitle = title.toLowerCase();
+    categoryMap[lowercaseTitle] = items;
+  });
 
   return categoryMap;
 };
@@ -238,13 +308,10 @@ export const onAuthStateChangedListener = (callback) =>
 
 export const removeCollection = async (collectionKey) => {
   const collectionRef = collection(db, collectionKey);
-
   const querySnapshot = await getDocs(collectionRef);
-
   const deletePromises = querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
 
   await Promise.all(deletePromises);
-
   await deleteDoc(collectionRef);
 
   console.log("Collection removed:", collectionKey);
