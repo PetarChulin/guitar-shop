@@ -120,14 +120,11 @@ export const editItemInDocument = async (collectionName, documentId, itemId, upd
 
       const existingItems = existingData.items || [];
 
-      // Find the index of the item to be edited
       const itemIndex = existingItems.findIndex(item => item.id === itemId);
 
       if (itemIndex !== -1) {
-        // Update the specific item in the array
         existingItems[itemIndex] = { ...existingItems[itemIndex], ...updatedItemData };
 
-        // Update the document with the modified items array
         await updateDoc(docRef, { items: existingItems });
         
         ConfirmModal(`Item with ID ${itemId} in the ${CATEGORY} field updated successfully! Please refresh the page.`, '', 'success', 3000);
