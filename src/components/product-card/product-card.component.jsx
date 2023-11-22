@@ -93,7 +93,7 @@ const ProductCard = ({ product, documentId }) => {
         </>
       ) : (
         <>
-          <Button style={{ top: '180px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
+          <Button style={{ top: '80px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
           {currentUser && showBtns && <>
             <Button buttonType="neon" onClick={addProductToCart}>
               Add to cart
