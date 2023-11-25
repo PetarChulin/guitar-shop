@@ -1,15 +1,21 @@
+:root {
+  --backgroundImage: url(/assets/guitar7.jpg);
+}
+
 body {
   margin: 0;
   padding: 20px 40px;
   font-family: 'Open Sans Condensed', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(19, 54, 66);
-  // background-color: rgb(11, 32, 39);
+  background-image: var(--backgroundImage);
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-y: scroll;
 }
 
 footer {
-  // background-color: darkgrey;
   border-radius: 8px;
   color: rgb(131, 158, 183);
   font-weight: bold;

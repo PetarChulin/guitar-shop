@@ -34,6 +34,7 @@ const ProductCard = ({ product, documentId }) => {
 
   const handleEditItem = async () => {
     setShowEditForm(true);
+    console.log(documentId);
   };
 
   const handleRemoveItem = async (itemId) => {

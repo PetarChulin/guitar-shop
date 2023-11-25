@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import ConfirmModal from '../confirm-modal/confirm-modal';
+import setBackgroundImage from '../../utils/background/changeBackgroundImage';
+import { default as Img } from '../../assets/guitar4.jpg';
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -20,6 +22,11 @@ const defaultFormFields = {
 };
 
 const SignUpForm = () => {
+
+  useEffect(() => {
+    setBackgroundImage(Img);
+  }, []);
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 

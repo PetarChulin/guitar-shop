@@ -1,14 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { CartContext } from '../../contexts/cart.context';
 import Button from '../../components/button/button.component';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import Swal from 'sweetalert2';
 
+import setBackgroundImage from '../../utils/background/changeBackgroundImage';
+import { default as Img } from '../../assets/guitar10.jpg';
+
 import './checkout.styles.scss';
 
 const Checkout = () => {
   const { cartItems, setCartItems, cartTotal } = useContext(CartContext);
+
+  useEffect(() => {
+    setBackgroundImage(Img);
+  }, []);
 
   const buyAll = () => {
 
@@ -23,7 +30,6 @@ const Checkout = () => {
       `).join('')}
     </div>
   `;
-
     Swal.fire({
       html: cartItemsHtml,
       showDenyButton: true,

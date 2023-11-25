@@ -1,8 +1,15 @@
 import { Outlet } from 'react-router-dom';
 
 import Directory from '../../components/directory/directory.component';
+import setBackgroundImage from '../../utils/background/changeBackgroundImage';
+import { default as Img} from '../../assets/guitar7.jpg';
+import { useEffect } from 'react';
 
 const Home = () => {
+
+  useEffect(() => {
+    setBackgroundImage(Img);
+  }, []);
 
   const categories = [
     {

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -6,16 +6,19 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import ConfirmModal from "../confirm-modal/confirm-modal";
 
+import setBackgroundImage from "../../utils/background/changeBackgroundImage";
+import { default as Img } from "../../assets/guitar3.jpg";
+
 import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
 
 import { AdminContext } from "../../contexts/admin.context";
-import SignInOutToast from "./sign-in-out.toast";
-
-import "./sign-in-form.styles.scss";
 import { CartContext } from "../../contexts/cart.context";
+
+import SignInOutToast from "./sign-in-out.toast";
+import "./sign-in-form.styles.scss";
 
 const defaultFormFields = {
   email: "",
@@ -27,6 +30,10 @@ const SignInForm = () => {
   const { cartItems } = useContext(CartContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
+  useEffect(() => {
+    setBackgroundImage(Img);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -98,7 +105,7 @@ const SignInForm = () => {
         </div>
       </form>
       <div className='sign-up'>
-      Don't have an account?  <Link  to='/signup'>Sign up</Link>
+        Don't have an account?  <Link to='/signup'>Sign up</Link>
       </div>
     </div>
   );
