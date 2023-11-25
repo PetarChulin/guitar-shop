@@ -8,7 +8,7 @@ import { CategoriesContext } from "../../contexts/categories.context";
 import './add-item.styles.scss'
 
 const defaultFormFields = {
-  id: Math.ceil(Math.random() * 100),
+  id: Math.ceil(Math.random() * 1000),
   description: "",
   imageUrl: "",
   name: "",
@@ -16,20 +16,19 @@ const defaultFormFields = {
 };
 
 const InputFormAddItem = () => {
+  const navigate = useNavigate();
 
   const { type } = useContext(TypeContext);
-  
-  const navigate = useNavigate();
+  const { categoriesMap, setCategoriesMap } = useContext(CategoriesContext);
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { id, description, imageUrl, name, price } = formFields;
-
-
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
+
 
   const addItem = async (event) => {
 
@@ -40,7 +39,11 @@ const InputFormAddItem = () => {
 
     await addItemToDocument(collectionName, documentId, formFields);
     const updatedCategories = await getCategoriesAndDocuments('collections');
-    // await getCategoriesAndDocuments('collections');
+    // new
+    console.log(collectionName);
+    console.log(updatedCategories[documentId]);
+    setCategoriesMap(updatedCategories);
+    console.log(categoriesMap);
     navigate(`/admin/${documentId}`);
   };
 

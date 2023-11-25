@@ -13,16 +13,16 @@ export const AdminProvider = ({ children }) => {
 
   const [searchField, setSearchField] = useState('');
   const [isAdmin, setIsAdmin] = useState(() => {
-
     const savedIsAdmin = localStorage.getItem('isAdmin');
     return savedIsAdmin === 'true';
   });
+  console.log(isAdmin);
 
 
   useEffect(() => {
     localStorage.setItem('isAdmin', isAdmin.toString());
   }, [isAdmin]);
-
+  // it triggers only once if 'collections' collection is empty
   // useEffect(() => {
   //   addCollectionAndDocuments('collections', GUITAR_DATA);
   // }, []);

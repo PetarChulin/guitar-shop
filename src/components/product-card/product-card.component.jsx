@@ -1,22 +1,24 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 import Button from "../button/button.component";
+import InputFormEditItem from "../edit-item-form/form-input-edit-item";
 
 import { CartContext } from "../../contexts/cart.context";
 import { AdminContext } from "../../contexts/admin.context";
 import { UserContext } from "../../contexts/user.context";
 
-import { editItemInDocument, removeItemFromDocument } from "../../utils/firebase/firebase.utils";
+import { getCategoriesAndDocuments, removeItemFromDocument } from "../../utils/firebase/firebase.utils";
 
 import "./product-card.styles.scss";
-import InputFormEditItem from "../edit-item-form/form-input-edit-item";
+import { CategoriesContext } from "../../contexts/categories.context";
 
 const ProductCard = ({ product, documentId }) => {
   const { id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
   const { addItemToCart, removeItemToCart, cartItems } = useContext(CartContext);
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
+  // new
+  const { setCategoriesMap } = useContext(CategoriesContext);
   const [showEditForm, setShowEditForm] = useState(false);
 
   const cartItem = cartItems.find((item) => item.id === product.id);
@@ -45,11 +47,15 @@ const ProductCard = ({ product, documentId }) => {
       denyButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        removeItemFromDocument(collectionName, documentId, itemId, name);
-        const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
-        Swal.fire({
-          title: `${name} removed from ${CATEGORY}'s field successfully! Please refresh the page.`,
-          timer: 3000
+        removeItemFromDocument(collectionName, documentId, itemId, name, async () => {
+          // new
+          const updatedCategories = await getCategoriesAndDocuments('collections');
+          setCategoriesMap(updatedCategories);
+          const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
+          Swal.fire({
+            title: `${name} removed from ${CATEGORY}'s field successfully!`,
+            timer: 3000
+          });
         });
       } else if (result.isDenied) {
         return;
@@ -79,34 +85,34 @@ const ProductCard = ({ product, documentId }) => {
 
   return (
     <>
-    <div className="product-card-container">
-      <img src={imageUrl} alt={`${name}`}/>
-      <div className="footer">
-        <span className="name">{name}</span>
-        {showPrice && <span className="price">{`Price: ${price} $`}</span>}
-        <div></div>
+      <div className="product-card-container">
+        <img src={imageUrl} alt={`${name}`} />
+        <div className="footer">
+          <span className="name">{name}</span>
+          {showPrice && <span className="price">{`Price: ${price} $`}</span>}
+          <div></div>
+        </div>
+        {isAdmin ? (
+          <>
+            <Button style={{ top: '200px' }} buttonType="neon" onClick={() => { handleRemoveItem(id) }}>Remove</Button>
+            <Button style={{ top: '260px' }} buttonType="neon" onClick={handleEditItem}>Edit</Button>
+          </>
+        ) : (
+          <>
+            <Button style={{ top: '80px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
+            {currentUser && showBtns && <>
+              <Button buttonType="neon" onClick={addProductToCart}>
+                Add to cart
+              </Button>
+              {quantity >= 1 && <Button style={{ top: '200px' }} buttonType="neon" onClick={removeProductFromCart}>
+                Remove from cart
+              </Button>}
+            </>}
+          </>
+        )}
       </div>
-      {isAdmin ? (
-        <>
-          <Button style={{ top: '200px' }} buttonType="neon" onClick={() => { handleRemoveItem(id) }}>Remove</Button>
-          <Button style={{ top: '260px' }} buttonType="neon" onClick={handleEditItem}>Edit</Button>
-        </>
-      ) : (
-        <>
-          <Button style={{ top: '80px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
-          {currentUser && showBtns && <>
-            <Button buttonType="neon" onClick={addProductToCart}>
-              Add to cart
-            </Button>
-            {quantity >= 1 && <Button style={{ top: '200px' }} buttonType="neon" onClick={removeProductFromCart}>
-              Remove from cart
-            </Button>}
-          </>}
-        </>
-      )}
-    </div>
-      {showEditForm && <InputFormEditItem product={product} documentId={documentId} closeForm={() => setShowEditForm(false)}/>}
-      </>
+      {showEditForm && <InputFormEditItem product={product} documentId={documentId} closeForm={() => setShowEditForm(false)} />}
+    </>
   );
 };
 

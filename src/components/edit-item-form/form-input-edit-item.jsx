@@ -1,18 +1,21 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
-import { editItemInDocument, fetchItemData } from "../../utils/firebase/firebase.utils";
+import { editItemInDocument, getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
+import { CategoriesContext } from "../../contexts/categories.context";
 
 import "./form-input-edit.styles.scss";
 import "../../components/button/button.styles.scss"
-
+import { useNavigate } from "react-router-dom";
 
 const InputFormEditItem = ({ product, documentId, closeForm }) => {
 
+    const { setCategoriesMap } = useContext(CategoriesContext);
     const [updatedItem, setUpdatedItem] = useState(product);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -28,9 +31,12 @@ const InputFormEditItem = ({ product, documentId, closeForm }) => {
     };
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        editItemInDocument('collections', documentId, product.id, updatedItem);
+        await editItemInDocument('collections', documentId, product.id, updatedItem);
+        const updatedCategories = await getCategoriesAndDocuments('collections');
+        setCategoriesMap(updatedCategories);
+        // navigate(`/admin/${documentId}`);
         closeForm();
     };
 
@@ -70,8 +76,8 @@ const InputFormEditItem = ({ product, documentId, closeForm }) => {
                         onChange={handleChange}
                     />
                     <div className="btn-container">
-                        <Button type="submit"  buttonType="neon">Update Item</Button>
-                        <Button type="button" buttonType="neon"onClick={closeForm}>Close</Button>
+                        <Button type="submit" buttonType="neon">Update Item</Button>
+                        <Button type="button" buttonType="neon" onClick={closeForm}>Close</Button>
                     </div>
                 </form>
             </div>

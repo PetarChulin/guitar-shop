@@ -35,7 +35,7 @@ const Category = () => {
       if (result.isConfirmed) {
         removeSectionFromCollection(collectionKey, sectionTitleToRemove);
         Swal.fire({
-          title: `${CATEGORY} removed from collection successfully! Please refresh the page.`,
+          title: `${CATEGORY} removed from collection successfully!`,
           timer: 3000
         });
       } else if (result.isDenied) {
@@ -44,15 +44,17 @@ const Category = () => {
     });
   };
 
+
   useEffect(() => {
-      setProducts(categoriesMap[category]);
-      window.scrollTo({ top: 0, behavior: 'instant' });
+    setProducts(categoriesMap[category]);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [category, categoriesMap]);
 
 
   useEffect(() => {
     setType(category);
   }, [type]);
+
 
 
   return (
