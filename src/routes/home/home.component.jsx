@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import Directory from '../../components/directory/directory.component';
 import setBackgroundImage from '../../utils/background/changeBackgroundImage';
-import { default as Img} from '../../assets/guitar7.jpg';
+import { default as Img} from '../../assets/guitar12.jpg';
 import { useEffect } from 'react';
 
 const Home = () => {
@@ -27,21 +27,21 @@ const Home = () => {
       title: 'Bass Guitars',
       imageUrl: 'https://www.ibanez.com/common/product_artist_file/file/pc_main_electric_basses_us_sp.jpg',
     },
-    {
-      id: 4,
-      title: 'Amplifiers',
-      imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-03.jpeg',
-    },
-    {
-      id: 5,
-      title: 'Effects',
-      imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-04.jpeg',
-    },
-    {
-      id: 6,
-      title: 'Used Guitars',
-      imageUrl: 'https://images.saymedia-content.com/.image/t_share/MTc0OTkyMDI1Nzk0NTIwNTE2/how-to-buy-used-guitar.jpg',
-    },
+    // {
+    //   id: 4,
+    //   title: 'Amplifiers',
+    //   imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-03.jpeg',
+    // },
+    // {
+    //   id: 5,
+    //   title: 'Effects',
+    //   imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-04.jpeg',
+    // },
+    // {
+    //   id: 6,
+    //   title: 'Used Guitars',
+    //   imageUrl: 'https://images.saymedia-content.com/.image/t_share/MTc0OTkyMDI1Nzk0NTIwNTE2/how-to-buy-used-guitar.jpg',
+    // },
   ];
 
   return (

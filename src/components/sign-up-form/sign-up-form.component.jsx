@@ -5,7 +5,7 @@ import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import ConfirmModal from '../confirm-modal/confirm-modal';
 import setBackgroundImage from '../../utils/background/changeBackgroundImage';
-import { default as Img } from '../../assets/guitar4.jpg';
+import { default as Img } from '../../assets/guitar14.jpg';
 
 import {
   createAuthUserWithEmailAndPassword,

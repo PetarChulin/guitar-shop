@@ -1,6 +1,6 @@
 .navigation {
   background-color: rgb(11, 32, 39, 0.8);
-  // border: solid 1px rgb(255, 255, 255);
+  border: solid 0.5px rgb(119, 118, 118);
   height: 160px;
   width: 100%;
   display: flex;
@@ -8,6 +8,8 @@
   justify-content: space-between;
   margin-bottom: 25px;
   border-radius: 6px;
+  z-index: 1;
+  
   &:hover {
     background-color: rgb(11, 32, 39);
   }
@@ -75,10 +77,12 @@
       color: rgb(255, 255, 255);
 
     }
-    ::placeholder{
+
+    ::placeholder {
       color: rgb(146, 142, 142);
       opacity: 1;
     }
+
     :focus::placeholder {
       color: transparent;
     }
@@ -108,13 +112,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
-  
+
   ul {
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
   }
 }
+
 .result {
   margin: 0;
   padding-bottom: 30px;

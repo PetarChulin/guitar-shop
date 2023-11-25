@@ -7,7 +7,7 @@ import Button from "../button/button.component";
 import ConfirmModal from "../confirm-modal/confirm-modal";
 
 import setBackgroundImage from "../../utils/background/changeBackgroundImage";
-import { default as Img } from "../../assets/guitar3.jpg";
+import { default as Img } from "../../assets/guitar11.jpg";
 
 import {
   signInAuthUserWithEmailAndPassword,

@@ -5,7 +5,7 @@ import CategoriesPreview from '../categories-preview/categories-preview.componen
 import Category from '../category/category.component';
 
 import setBackgroundImage from '../../utils/background/changeBackgroundImage';
-import {default as Img} from '../../assets/guitar9.jpg'
+import {default as Img} from '../../assets/guitar15.jpg'
 import './shop.styles.scss';
 
 const Shop = () => {
