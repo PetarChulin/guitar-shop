@@ -83,8 +83,8 @@
 
   position: fixed;
   border: 0px;
-  background-color:  rgba(107, 80, 239, 0.5);
-  border-radius: 100px;
+  background-color:   rgba(54, 94, 106, 0.7);
+  border-radius: 50px;
   padding: 1rem 2rem;
   font-size: 15px;
   bottom: 5px;
@@ -92,6 +92,7 @@
   width: 100px;
   text-align: center;
   cursor: pointer;
+  z-index: 50;
 
   &:hover {
     background-color: rgb(80, 141, 239);
