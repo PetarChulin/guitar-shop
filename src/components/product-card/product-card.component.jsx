@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Swal from 'sweetalert2';
 import Button from "../button/button.component";
 import InputFormEditItem from "../edit-item-form/form-input-edit-item";
@@ -26,7 +26,15 @@ const ProductCard = ({ product, documentId }) => {
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const addProductToCart = () => addItemToCart(product);
+  const showBtnsRef = useRef(showBtns);
 
+  useEffect(() => {
+    if (documentId === undefined) {
+      showBtnsRef.current = false;
+    }
+  }, [documentId]);
+
+  console.log(showBtnsRef.current);
 
   const removeProductFromCart = () => {
     removeItemToCart(product);
@@ -49,7 +57,6 @@ const ProductCard = ({ product, documentId }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         removeItemFromDocument(collectionName, documentId, itemId, name, async () => {
-          // new
           const updatedCategories = await getCategoriesAndDocuments('collections');
           setCategoriesMap(updatedCategories);
           const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
@@ -84,6 +91,10 @@ const ProductCard = ({ product, documentId }) => {
     });
   };
 
+  // const handleShowButtons = () => {
+
+  // };
+
   return (
     <>
       <div className="product-card-container">
@@ -95,8 +106,8 @@ const ProductCard = ({ product, documentId }) => {
         </div>
         {isAdmin ? (
           <>
-            <Button style={{ top: '200px' }} buttonType="neon" onClick={() => { handleRemoveItem(id) }}>Remove</Button>
-            <Button style={{ top: '260px' }} buttonType="neon" onClick={handleEditItem}>Edit</Button>
+            {showBtnsRef.current && <Button style={{ top: '200px' }} buttonType="neon" onClick={() => { handleRemoveItem(id) }}>Remove</Button>}
+            {showBtnsRef.current && <Button style={{ top: '260px' }} buttonType="neon" onClick={handleEditItem}>Edit</Button>}
           </>
         ) : (
           <>

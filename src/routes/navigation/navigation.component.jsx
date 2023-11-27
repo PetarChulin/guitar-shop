@@ -137,7 +137,7 @@ const Navigation = () => {
           <div className="filtered-items-container">
             {filteredNames.map((product) => (
               <ul className="filtered-product"><ProductCard key={product.id} product={product}
-                showPrice={product.showPrice = false} showBtns={product.showBtns = false} /></ul>
+                showPrice={product.showPrice = false} showBtns={product.showBtns = true} /></ul>
             ))}
           </div>
         </>}
