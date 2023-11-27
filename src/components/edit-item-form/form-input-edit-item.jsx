@@ -8,14 +8,11 @@ import { CategoriesContext } from "../../contexts/categories.context";
 
 import "./form-input-edit.styles.scss";
 import "../../components/button/button.styles.scss"
-import { useNavigate } from "react-router-dom";
 
 const InputFormEditItem = ({ product, documentId, closeForm }) => {
 
     const { setCategoriesMap } = useContext(CategoriesContext);
     const [updatedItem, setUpdatedItem] = useState(product);
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,8 +30,7 @@ const InputFormEditItem = ({ product, documentId, closeForm }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await editItemInDocument('collections', documentId, product.id, updatedItem);
-        navigate(`/admin/${documentId}`);
+        await editItemInDocument('collections', product.category, product.id, updatedItem);
         const updatedCategories = await getCategoriesAndDocuments('collections');
         setCategoriesMap(updatedCategories);
         closeForm();

@@ -6,14 +6,14 @@ import InputFormEditItem from "../edit-item-form/form-input-edit-item";
 import { CartContext } from "../../contexts/cart.context";
 import { AdminContext } from "../../contexts/admin.context";
 import { UserContext } from "../../contexts/user.context";
-
-import { getCategoriesAndDocuments, removeItemFromDocument } from "../../utils/firebase/firebase.utils";
-
-import "./product-card.styles.scss";
 import { CategoriesContext } from "../../contexts/categories.context";
 
+import { getCategoriesAndDocuments, removeItemFromDocument } from "../../utils/firebase/firebase.utils";
+import { default as Img } from '../../assets/favorite-50.png';
+import "./product-card.styles.scss";
+
 const ProductCard = ({ product, documentId }) => {
-  const { id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
+  const { category, id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
   const { addItemToCart, removeItemToCart, cartItems } = useContext(CartContext);
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
@@ -33,8 +33,6 @@ const ProductCard = ({ product, documentId }) => {
       showBtnsRef.current = false;
     }
   }, [documentId]);
-
-  console.log(showBtnsRef.current);
 
   const removeProductFromCart = () => {
     removeItemToCart(product);
@@ -91,14 +89,11 @@ const ProductCard = ({ product, documentId }) => {
     });
   };
 
-  // const handleShowButtons = () => {
-
-  // };
-
   return (
     <>
       <div className="product-card-container">
         <img src={imageUrl} alt={`${name}`} />
+        {currentUser && <img src={Img} alt="Favorite" className="favorite-icon" />}
         <div className="footer">
           <span className="name">{name}</span>
           {showPrice && <span className="price">{`Price: ${price} $`}</span>}
@@ -107,19 +102,20 @@ const ProductCard = ({ product, documentId }) => {
         {isAdmin ? (
           <>
             {showBtnsRef.current && <Button style={{ top: '200px' }} buttonType="neon" onClick={() => { handleRemoveItem(id) }}>Remove</Button>}
-            {showBtnsRef.current && <Button style={{ top: '260px' }} buttonType="neon" onClick={handleEditItem}>Edit</Button>}
+            <Button style={{ top: '260px' }} buttonType="neon" onClick={handleEditItem}>Edit</Button>
           </>
         ) : (
           <>
-            <Button style={{ top: '80px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
-            {currentUser && showBtns && <>
-              <Button buttonType="neon" onClick={addProductToCart}>
-                Add to cart
-              </Button>
-              {quantity >= 1 && <Button style={{ top: '200px' }} buttonType="neon" onClick={removeProductFromCart}>
-                Remove from cart
-              </Button>}
-            </>}
+            <Button style={{ top: '200px' }} buttonType="neon" onClick={showDetails} title="click for details">Details</Button>
+            {currentUser && showBtns &&
+              <>
+                <Button buttonType="neon" onClick={addProductToCart}>
+                  Add to cart
+                </Button>
+                {quantity >= 1 && <Button style={{ top: '145px' }} buttonType="neon" onClick={removeProductFromCart}>
+                  Remove from cart
+                </Button>}
+              </>}
           </>
         )}
       </div>

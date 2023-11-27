@@ -112,9 +112,14 @@ const Navigation = () => {
               ADMIN
             </span>
           </Link> :
+          <>
+          <Link className="nav-link" to="/shop" onClick={() => { setAdminFalse(); clearSearchField(); }}>
+          FAVORITES
+        </Link>
             <Link className="nav-link" to="/shop" onClick={() => { setAdminFalse(); clearSearchField(); }}>
               SHOP
-            </Link>}
+            </Link>
+            </>}
           {currentUser ? (
             <span className="nav-link" onClick={() => { signOut(); clearSearchField(); }}>
               SIGN OUT

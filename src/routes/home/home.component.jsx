@@ -27,11 +27,11 @@ const Home = () => {
       title: 'Bass Guitars',
       imageUrl: 'https://www.ibanez.com/common/product_artist_file/file/pc_main_electric_basses_us_sp.jpg',
     },
-    // {
-    //   id: 4,
-    //   title: 'Amplifiers',
-    //   imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-03.jpeg',
-    // },
+    {
+      id: 4,
+      title: 'Amplifiers',
+      imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-03.jpeg',
+    },
     // {
     //   id: 5,
     //   title: 'Effects',
