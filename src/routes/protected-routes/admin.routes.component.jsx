@@ -5,7 +5,7 @@ import { AdminContext } from "../../contexts/admin.context";
 const ProtectedRoutesAdmin = () => {
 
     const { isAdmin } = useContext(AdminContext);
-
+    
     if (isAdmin) {
         return <Outlet />
     } else {
