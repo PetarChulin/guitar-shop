@@ -9,6 +9,8 @@ import SignInForm from './components/sign-in-form/sign-in-form.component';
 import SignUpForm from './components/sign-up-form/sign-up-form.component';
 import Button from './components/button/button.component';
 import Footer from './routes/footer/footer.component';
+import ProtectedRoutesAdmin from './routes/protected-routes/admin.routes.component';
+import ProtectedRouteLoggedUser from './routes/protected-routes/logged.routes.component';
 
 const App = () => {
 
@@ -33,14 +35,20 @@ const App = () => {
         <Route path='/' element={<Navigation />}>
           <Route index element={<Home />} />
           <Route path='shop/*' element={<Shop />} />
+          <Route element={<ProtectedRouteLoggedUser />}>
           <Route path='signin' element={<SignInForm />} />
           <Route path='signup' element={<SignUpForm />} />
+          </Route>
           <Route path='checkout' element={<Checkout />} />
-          <Route path='admin/*' element={<Shop />} />
-          <Route path='add-item-input-form' element={<InputFormAddItem />} />
+          <Route element={<ProtectedRoutesAdmin />}>
+            <Route path='admin/*' element={<Shop />} />
+            <Route path='add-item-input-form' element={<InputFormAddItem />} />
+          </Route>
+          <Route path='/unauthorized' element={<h2>You are not authorized to view this page!</h2>} />
+          <Route path="*" element={<h2>There's nothing here: 404!</h2>} />
         </Route>
       </Routes>
-      <Footer/>
+      <Footer />
       {showBtn &&
         <Button buttonType='neon' className='scroll-to-top-btn'
           onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }) }}>Top</Button>

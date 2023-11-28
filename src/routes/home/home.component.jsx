@@ -32,11 +32,11 @@ const Home = () => {
       title: 'Amplifiers',
       imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-03.jpeg',
     },
-    // {
-    //   id: 5,
-    //   title: 'Effects',
-    //   imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-04.jpeg',
-    // },
+    {
+      id: 5,
+      title: 'Effects',
+      imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-04.jpeg',
+    },
     // {
     //   id: 6,
     //   title: 'Used Guitars',
