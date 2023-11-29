@@ -11,6 +11,7 @@ import Button from './components/button/button.component';
 import Footer from './routes/footer/footer.component';
 import ProtectedRoutesAdmin from './routes/protected-routes/admin.routes.component';
 import ProtectedRouteLoggedUser from './routes/protected-routes/logged.routes.component';
+import ProtectedRouteCheckout from './routes/protected-routes/checkout.routes.component';
 
 const App = () => {
 
@@ -39,7 +40,9 @@ const App = () => {
           <Route path='signin' element={<SignInForm />} />
           <Route path='signup' element={<SignUpForm />} />
           </Route>
+          <Route element={<ProtectedRouteCheckout />}>
           <Route path='checkout' element={<Checkout />} />
+          </Route>
           <Route element={<ProtectedRoutesAdmin />}>
             <Route path='admin/*' element={<Shop />} />
             <Route path='add-item-input-form' element={<InputFormAddItem />} />

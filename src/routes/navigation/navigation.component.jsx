@@ -129,7 +129,7 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
-          {!isAdmin && <CartIcon clearOpen={clearSearchField} />}
+          {!isAdmin && currentUser && <CartIcon clearOpen={clearSearchField} />}
         </div>
         {!isAdmin && <span className="search-input">
           <input id="search" type="search" ref={inputRef} onChange={onSearchChange} placeholder="Search guitars: e.g. Fender" />
