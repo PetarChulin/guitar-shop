@@ -10,6 +10,7 @@ import { CartProvider } from './contexts/cart.context';
 import { AdminProvider } from './contexts/admin.context';
 import { TypeProvider } from './contexts/type.context';
 import './index.scss';
+import { FavoriteProvider } from './contexts/favorites.context';
 
 const rootElement = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -17,6 +18,7 @@ rootElement.render(
       <BrowserRouter>
         <UserProvider>
           <CategoriesProvider>
+            <FavoriteProvider>
             <TypeProvider>
               <CartProvider>
                 <AdminProvider>
@@ -24,6 +26,7 @@ rootElement.render(
                 </AdminProvider>
               </CartProvider>
             </TypeProvider>
+            </FavoriteProvider>
           </CategoriesProvider>
         </UserProvider>
       </BrowserRouter>

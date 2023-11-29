@@ -11,7 +11,10 @@ import Button from './components/button/button.component';
 import Footer from './routes/footer/footer.component';
 import ProtectedRoutesAdmin from './routes/protected-routes/admin.routes.component';
 import ProtectedRouteLoggedUser from './routes/protected-routes/logged.routes.component';
-import ProtectedRouteCheckout from './routes/protected-routes/checkout.routes.component';
+import Favorites from './components/favotites-component/favorites.component';
+import Unathorized from './routes/protected-routes/unauthorized.component';
+import NotFound from './routes/protected-routes/not-find.component';
+import ProtectedRouteNotLogged from './routes/protected-routes/notlogged.routes.component';
 
 const App = () => {
 
@@ -37,18 +40,19 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path='shop/*' element={<Shop />} />
           <Route element={<ProtectedRouteLoggedUser />}>
-          <Route path='signin' element={<SignInForm />} />
-          <Route path='signup' element={<SignUpForm />} />
+            <Route path='signin' element={<SignInForm />} />
+            <Route path='signup' element={<SignUpForm />} />
           </Route>
-          <Route element={<ProtectedRouteCheckout />}>
-          <Route path='checkout' element={<Checkout />} />
+          <Route element={<ProtectedRouteNotLogged />}>
+            <Route path='checkout' element={<Checkout />} />
+            <Route path='favorites' element={<Favorites />} />
           </Route>
           <Route element={<ProtectedRoutesAdmin />}>
             <Route path='admin/*' element={<Shop />} />
             <Route path='add-item-input-form' element={<InputFormAddItem />} />
           </Route>
-          <Route path='/unauthorized' element={<h2>You are not authorized to view this page!</h2>} />
-          <Route path="*" element={<h2>There's nothing here: 404!</h2>} />
+          <Route path='/unauthorized' element={<Unathorized />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <Footer />

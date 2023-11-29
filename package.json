@@ -21,6 +21,7 @@
     "redux": "^4.2.1",
     "sass": "1.49.7",
     "sweetalert": "^2.1.2",
+    "swiper": "^6.8.4",
     "web-vitals": "2.1.4"
   },
   "scripts": {

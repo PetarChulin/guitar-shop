@@ -82,7 +82,7 @@ const Category = () => {
             />
           ))
         ) : (
-          <h2 style={{color: "white"}}>There are no products</h2>
+          <h2 className="no-items">There are no products</h2>
         )}
       </div>
     </Fragment>

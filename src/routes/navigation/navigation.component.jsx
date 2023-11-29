@@ -18,11 +18,13 @@ import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
 import ProductCard from "../../components/product-card/product-card.component";
 
 import "./navigation.styles.scss";
+import { FavoriteContext } from "../../contexts/favorites.context";
 
 const Navigation = () => {
   const { currentUser, username, setUsername } = useContext(UserContext);
   const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
   const { isAdmin, setIsAdmin, searchField, setSearchField } = useContext(AdminContext);
+  const { setFavoriteItems } = useContext(FavoriteContext);
 
   const [names, setNames] = useState([]);
   const [filteredNames, setFilteredNames] = useState([]);
@@ -95,6 +97,7 @@ const Navigation = () => {
     setUsername("");
     setCartCount(0);
     setCartItems([]);
+    setFavoriteItems([]);
     navigate('/');
   };
 
@@ -113,17 +116,19 @@ const Navigation = () => {
             </span>
           </Link> :
           <>
-          <Link className="nav-link" to="/shop" onClick={() => { setAdminFalse(); clearSearchField(); }}>
-          FAVORITES
-        </Link>
             <Link className="nav-link" to="/shop" onClick={() => { setAdminFalse(); clearSearchField(); }}>
               SHOP
             </Link>
             </>}
           {currentUser ? (
+            <>
+          <Link className="nav-link" to="/favorites" onClick={() => { setAdminFalse(); clearSearchField(); }}>
+          FAVORITES
+        </Link>
             <span className="nav-link" onClick={() => { signOut(); clearSearchField(); }}>
               SIGN OUT
             </span>
+            </>
           ) : (
             <Link className="nav-link" to="/signin" onClick={clearSearchField}>
               SIGN IN

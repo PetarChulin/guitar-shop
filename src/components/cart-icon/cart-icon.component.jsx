@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import Image from '../../assets/guitar.png'
+import Image2 from '../../assets/guitar2.png'
 
 import { CartContext } from '../../contexts/cart.context';
 
@@ -14,7 +15,7 @@ const CartIcon = ({ clearOpen }) => {
 
   return (
     <div className='cart-icon-container'  onClick={() => { toggleIsCartOpen(); clearOpen();}}>
-      <img src={Image} className='shopping-icon' />
+      <img src={Image2} className='shopping-icon' />
       <span className='item-count'>{cartCount}</span>
     </div>
   );

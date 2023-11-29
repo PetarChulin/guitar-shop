@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { UserContext } from "../../contexts/user.context";
 
-const ProtectedRouteCheckout = () => {
+const ProtectedRouteNotLogged = () => {
 
     const { currentUser } = useContext(UserContext);
 
@@ -12,7 +12,5 @@ const ProtectedRouteCheckout = () => {
     } else {
         return <Navigate to='/signin' />
     }
-
-   
 };
-export default ProtectedRouteCheckout;
+export default ProtectedRouteNotLogged;

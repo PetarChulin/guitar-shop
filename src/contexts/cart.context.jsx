@@ -55,12 +55,12 @@ export const CartProvider = ({ children }) => {
   const savedItems = localStorage.getItem('userItems')
     ? JSON.parse(localStorage.getItem('userItems'))
     : [];
-    console.log(savedItems);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState(savedItems);
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+
 
   useEffect(() => {
     localStorage.setItem('userItems', []);
@@ -87,6 +87,7 @@ export const CartProvider = ({ children }) => {
     );
     setCartTotal(newCartTotal);
   }, [cartItems]);
+
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
