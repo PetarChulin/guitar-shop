@@ -12,12 +12,14 @@ import ProductCard from "../../components/product-card/product-card.component";
 import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
 import { AdminContext } from "../../contexts/admin.context";
+import { FavoriteContext } from "../../contexts/favorites.context";
+
+import { nameExtract } from "../../utils/nameExtract";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import { default as Guitar } from "../../assets/guitar-logo.png"
 import { default as Img } from "../../assets/like.png"
 
-import { FavoriteContext } from "../../contexts/favorites.context";
 import "./navigation.styles.scss";
 
 const Navigation = () => {
@@ -32,6 +34,8 @@ const Navigation = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const favorites = favoriteItems.length;
+
+  const extractedName = nameExtract(username);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -108,7 +112,7 @@ const Navigation = () => {
           <img src={Guitar} alt="" style={{ width: '130px', height: '130px' }} />
         </Link>
         <div className="title-container">Guitar Shop</div>
-        {currentUser && <div className="welcome-container">Welcome {username}</div>}
+        {currentUser && <div className="welcome-container">Welcome {extractedName}</div>}
         <div className="nav-links-container">
           {isAdmin ? <Link className="nav-link" to="/admin">
             <span className="nav-link">
@@ -125,7 +129,7 @@ const Navigation = () => {
               { !isAdmin && <Link className="nav-link" to="/favorites" onClick={() => { clearSearchField(); }}>
                 FAVORITES
                 {/* <img src={Img} /> */}
-                {favoriteItems.length > 0 && <span className="badge">{favorites}</span>}
+                {favoriteItems.length > 0 && <span className="favorite-count">{favorites}</span>}
               </Link>}
               <span className="nav-link" onClick={() => { signOut(); clearSearchField(); }}>
                 SIGN OUT

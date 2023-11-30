@@ -40,14 +40,19 @@ footer {
   text-align: center;
 }
 
-.badge {
-    margin-bottom: 100px;
-    margin-left: 5px;
+.favorite-count {
+    margin-bottom: 105px;
+    margin-left: -5px;
     position: absolute;
     font-size: 25px;
     font-weight: 800;
     bottom: 12px;
+    text-align: center;
+    width: 25px;
     color: rgb(103, 203, 236);
+    background-color: rgb(4, 63, 77);
+    border-radius: 25px;
+    z-index: -1;
 }
 
 code {
