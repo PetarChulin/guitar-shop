@@ -6,32 +6,32 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
+import ProductCard from "../../components/product-card/product-card.component";
 
 import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
 import { AdminContext } from "../../contexts/admin.context";
-
-import { default as Guitar } from "../../assets/guitar-logo.png"
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
-import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
-import ProductCard from "../../components/product-card/product-card.component";
+import { default as Guitar } from "../../assets/guitar-logo.png"
+import { default as Img } from "../../assets/like.png"
 
-import "./navigation.styles.scss";
 import { FavoriteContext } from "../../contexts/favorites.context";
+import "./navigation.styles.scss";
 
 const Navigation = () => {
   const { currentUser, username, setUsername } = useContext(UserContext);
   const { isCartOpen, setCartCount, setCartItems } = useContext(CartContext);
   const { isAdmin, setIsAdmin, searchField, setSearchField } = useContext(AdminContext);
-  const { setFavoriteItems } = useContext(FavoriteContext);
+  const { favoriteItems, setFavoriteItems } = useContext(FavoriteContext);
 
   const [names, setNames] = useState([]);
   const [filteredNames, setFilteredNames] = useState([]);
 
-
   const navigate = useNavigate();
   const inputRef = useRef(null);
+  const favorites = favoriteItems.length;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,7 +78,7 @@ const Navigation = () => {
   };
 
   const clearSearchField = () => {
-    
+
     setSearchField('');
     if (inputRef.current) {
       inputRef.current.value = '';
@@ -115,19 +115,21 @@ const Navigation = () => {
               ADMIN
             </span>
           </Link> :
-          <>
-            <Link className="nav-link" to="/shop" onClick={() => { setAdminFalse(); clearSearchField(); }}>
-              SHOP
-            </Link>
+            <>
+              <Link className="nav-link" to="/shop" onClick={() => { setAdminFalse(); clearSearchField(); }}>
+                SHOP
+              </Link>
             </>}
           {currentUser ? (
             <>
-          <Link className="nav-link" to="/favorites" onClick={() => { setAdminFalse(); clearSearchField(); }}>
-          FAVORITES
-        </Link>
-            <span className="nav-link" onClick={() => { signOut(); clearSearchField(); }}>
-              SIGN OUT
-            </span>
+              { !isAdmin && <Link className="nav-link" to="/favorites" onClick={() => { clearSearchField(); }}>
+                FAVORITES
+                {/* <img src={Img} /> */}
+                {favoriteItems.length > 0 && <span className="badge">{favorites}</span>}
+              </Link>}
+              <span className="nav-link" onClick={() => { signOut(); clearSearchField(); }}>
+                SIGN OUT
+              </span>
             </>
           ) : (
             <Link className="nav-link" to="/signin" onClick={clearSearchField}>

@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { FavoriteContext } from "../../contexts/favorites.context";
+import { UserContext } from "../../contexts/user.context";
+
 import ProductCard from "../product-card/product-card.component";
+
 import "../../components/product-card/product-card.styles.scss";
 import "../../routes/category/category.styles.scss";
 import "../../routes/shop/shop.styles.scss";
-import { UserContext } from "../../contexts/user.context";
 
 const Favorites = () => {
 

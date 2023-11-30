@@ -30,7 +30,7 @@ const InputFormEditItem = ({ product, documentId, closeForm }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await editItemInDocument('collections', product.category, product.id, updatedItem);
+        await editItemInDocument('collections', documentId, product.id, updatedItem);
         const updatedCategories = await getCategoriesAndDocuments('collections');
         setCategoriesMap(updatedCategories);
         closeForm();

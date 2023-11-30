@@ -40,6 +40,16 @@ footer {
   text-align: center;
 }
 
+.badge {
+    margin-bottom: 100px;
+    margin-left: 5px;
+    position: absolute;
+    font-size: 25px;
+    font-weight: 800;
+    bottom: 12px;
+    color: rgb(103, 203, 236);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
