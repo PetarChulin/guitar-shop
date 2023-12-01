@@ -51,11 +51,12 @@
 
   &.neon {
     background-color: rgb(31, 69, 81);
-    color: rgb(80, 170, 239);
-    border: 1px solid rgb(80, 170, 239);
+    // color: rgb(80, 170, 239);
+    color: rgb(166, 169, 171);
+    border: 1px solid rgb(166, 169, 171);
 
     &:hover {
-      background-color: rgb(80, 170, 239);
+      background-color:rgb(166, 169, 171);
       color: rgb(31, 69, 81);
     }
   }

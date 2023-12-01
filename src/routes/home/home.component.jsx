@@ -30,12 +30,12 @@ const Home = () => {
     {
       id: 4,
       title: 'Amplifiers',
-      imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-03.jpeg',
+      imageUrl: 'https://albertspawn.com/wp-content/uploads/2020/03/Guitar-Music-History-The-Electric-Amp-is-Born-Part-1-1200x675.jpeg',
     },
     {
       id: 5,
       title: 'Effects',
-      imageUrl: 'https://www.guitarcenter.com/static/gc/2023/page-dynamic/redesign/category-tiles/category-tiles-04.jpeg',
+      imageUrl: 'https://cdn.eventideaudio.com/uploads/2021/09/eventide_pedalboard-scaled.jpg',
     },
     // {
     //   id: 6,

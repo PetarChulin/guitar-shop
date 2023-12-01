@@ -4,13 +4,13 @@ import { AdminContext } from "../../contexts/admin.context";
 
 import "./directory-item.styles.scss";
 
-// import {default as Electric} from '../../sounds/electric-guitar.wav';
+import {default as Electric} from '../../sounds/electric-guitar.wav';
 
 const DirectoryItem = ({ category }) => {
 
 
-  // const audioRef = useRef(null);
-  const { searchField, setSearchField } = useContext(AdminContext);
+  const audioRef = useRef(null);
+  const { setSearchField } = useContext(AdminContext);
   const { imageUrl, title } = category;
 
   const clearSearchField = () => {
