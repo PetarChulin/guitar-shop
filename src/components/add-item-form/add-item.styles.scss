@@ -11,6 +11,10 @@
   flex-direction: column;
   width: 380px;
 
+  &:hover {
+  background-color: rgb(19, 54, 66);
+  }
+
 
   h2 {
     margin: 5px 0;
