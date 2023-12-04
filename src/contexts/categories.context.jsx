@@ -15,7 +15,7 @@ export const CategoriesProvider = ({ children }) => {
     const getCategoriesMap = async () => {
       try {
         const categoryMap = await getCategoriesAndDocuments();
-        console.log('Fetched categoriesMap:', categoryMap);
+        // console.log('Fetched categoriesMap:', categoryMap);
         setCategoriesMap(categoryMap);
       } catch (error) {
         console.error('Error fetching categoriesMap:', error);

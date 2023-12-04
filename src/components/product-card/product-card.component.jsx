@@ -15,13 +15,12 @@ import { FavoriteContext } from "../../contexts/favorites.context";
 import "./product-card.styles.scss";
 
 const ProductCard = ({ product, documentId }) => {
-  const { category, id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
+  const { id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
   const { addItemToCart, removeItemToCart, cartItems } = useContext(CartContext);
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
   const { favoriteItems, setFavoriteItems, addItemToFavorites, removeItemFromFavorites } = useContext(FavoriteContext);
-  // new
-  const { setCategoriesMap } = useContext(CategoriesContext);
+  const { categoriesMap, setCategoriesMap } = useContext(CategoriesContext);
   const [showEditForm, setShowEditForm] = useState(false);
 
   const cartItem = cartItems.find((item) => item.id === product.id);
@@ -37,6 +36,7 @@ const ProductCard = ({ product, documentId }) => {
   const removeProductFromFavorites = () => removeItemFromFavorites(product);
 
   const showBtnsRef = useRef(showBtns);
+console.log(categoriesMap);
 
   useEffect(() => {
     if (documentId === undefined) {
@@ -50,7 +50,6 @@ const ProductCard = ({ product, documentId }) => {
 
   const handleEditItem = async () => {
     setShowEditForm(true);
-    console.log(documentId);
   };
 
   const handleRemoveItem = async (itemId) => {
@@ -99,7 +98,6 @@ const ProductCard = ({ product, documentId }) => {
     });
   };
 
-  console.log(favoriteItems);
   return (
     <>
       <div className="product-card-container">

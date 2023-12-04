@@ -1,12 +1,12 @@
 import { useContext, useState, useEffect, Fragment } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 import ProductCard from "../../components/product-card/product-card.component";
 import Button from "../../components/button/button.component";
 
 import { CategoriesContext } from "../../contexts/categories.context";
-import { removeSectionFromCollection } from "../../utils/firebase/firebase.utils";
+import { getCategoriesAndDocuments, removeSectionFromCollection } from "../../utils/firebase/firebase.utils";
 
 import { AdminContext } from "../../contexts/admin.context";
 import { TypeContext } from "../../contexts/type.context";
@@ -14,13 +14,15 @@ import "./category.styles.scss";
 
 const Category = () => {
   const { category } = useParams();
-  const { categoriesMap } = useContext(CategoriesContext);
+  const { categoriesMap, setCategoriesMap } = useContext(CategoriesContext);
   const { type, setType } = useContext(TypeContext);
   const { isAdmin } = useContext(AdminContext);
 
   const [products, setProducts] = useState(categoriesMap[category]);
 
   const CATEGORY = category.toUpperCase().replace(/_/g, " ");
+
+  const navigate = useNavigate();
 
   const removeSectionFromCollectionDB = () => {
     const collectionKey = "collections";
@@ -33,10 +35,14 @@ const Category = () => {
       denyButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
-        removeSectionFromCollection(collectionKey, sectionTitleToRemove);
-        Swal.fire({
-          title: `${CATEGORY} removed from collection successfully!`,
-          timer: 3000
+        removeSectionFromCollection(collectionKey, sectionTitleToRemove, async () => {
+          const updatedCategories = await getCategoriesAndDocuments('collections');
+          setCategoriesMap(updatedCategories);
+          navigate('/shop');
+          Swal.fire({
+            title: `${CATEGORY} removed from collection successfully!`,
+            timer: 3000
+          });
         });
       } else if (result.isDenied) {
         return;

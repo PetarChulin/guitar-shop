@@ -238,7 +238,7 @@ export const removeItemFromDocument = async (collectionName, documentId, itemIdT
 };
 
 //fetching whole collection from firebase database
-//=======================================
+//=====================================================
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "collections");
   const q = query(collectionRef);
@@ -253,6 +253,23 @@ export const getCategoriesAndDocuments = async () => {
   });
 
   return categoryMap;
+};
+
+//fetching title and image for certain category
+// ======================================================
+export const getTitleAndImageFromDocument = async () => {
+  const collectionRef = collection(db, "collections");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const titleAndImage = [];
+
+  querySnapshot.forEach((docSnapshot) => {
+    const { title, image } = docSnapshot.data();
+    titleAndImage[title.replace(/_/g, " ")] = image;
+  });
+
+  return titleAndImage;
 };
 
 //creating a new user document when a new user signs up
@@ -303,6 +320,7 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("email", email)
           localStorage.setItem("userItems", []);
+          localStorage.setItem("userFavorites", []);
           console.log("User signed in successfully.");
         })
         .catch((error) => {
@@ -344,7 +362,8 @@ export const removeCollection = async (collectionKey) => {
 //============================================
 export const removeSectionFromCollection = async (
   collectionKey,
-  sectionTitle
+  sectionTitle,
+  callback
 ) => {
   const collectionRef = collection(db, collectionKey);
   const querySnapshot = await getDocs(collectionRef);
@@ -360,4 +379,42 @@ export const removeSectionFromCollection = async (
   } else {
     console.log(`Section "${sectionTitle}" not found in collection`);
   }
+
+  const updatedData = await getCategoriesAndDocuments(collectionKey);
+  if (callback) {
+    callback(updatedData);
+  }
 };
+
+// export const removeItemFromSectionById = async (
+//   collectionKey,
+//   sectionTitle,
+//   itemName
+// ) => {
+//   const collectionRef = doc(db, collectionKey);
+
+//   const collectionSnapshot = await getDoc(collectionRef);
+//   const collectionData = collectionSnapshot.data();
+
+//   if (sectionTitle in collectionData) {
+//     const sectionArray = collectionData[sectionTitle];
+
+//     const itemIndex = sectionArray.findIndex((item) => item.name === itemName);
+
+//     if (itemIndex !== -1) {
+//       sectionArray.splice(itemIndex, 1);
+
+//       await setDoc(collectionRef, { [sectionTitle]: sectionArray });
+
+//       console.log(
+//         `Item with id ${itemName} removed from section "${sectionTitle}"`
+//       );
+//     } else {
+//       console.log(
+//         `Item with id ${itemName} not found in section "${sectionTitle}"`
+//       );
+//     }
+//   } else {
+//     console.log(`Section "${sectionTitle}" not found in collection`);
+//   }
+// };
