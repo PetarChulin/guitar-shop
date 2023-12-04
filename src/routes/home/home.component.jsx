@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import Directory from '../../components/directory/directory.component';
 import setBackgroundImage from '../../utils/background/changeBackgroundImage';
-import CATEGORIES from '../../categories-data';
+// import CATEGORIES from '../../categories-data';
 import { default as Img} from '../../assets/guitar12.jpg';
 import { getTitleAndImageFromDocument } from '../../utils/firebase/firebase.utils';
 

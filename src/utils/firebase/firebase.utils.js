@@ -116,7 +116,7 @@ export const addItemToDocument = async (collectionName, documentId, newItemData)
 
 //editing an item in document
 //===========================
-export const editItemInDocument = async (collectionName, documentId, itemId, updatedItemData) => {
+export const editItemInDocument = async (collectionName, documentId, itemId, productName, updatedItemData) => {
   const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
 
   try {
@@ -138,7 +138,7 @@ export const editItemInDocument = async (collectionName, documentId, itemId, upd
         // Update the document with the modified items array
         await updateDoc(docRef, { items: existingItems });
 
-        ConfirmModal(`Item with ID ${itemId} in the ${CATEGORY} field updated successfully!`, '', 'success', 3000);
+        ConfirmModal(`Item with name ${productName} in the ${CATEGORY} field updated successfully!`, '', 'success', 3000);
         console.log("Item in the document's array field updated successfully!");
       } else {
         console.error("Item not found in the array.");
@@ -174,7 +174,7 @@ export const fetchData = async (collectionName, documentId) => {
 };
 
 //fetching data for specific item in document
-//===================================
+//===========================================
 export const fetchItemData = async (collectionName, documentId, itemId) => {
 
   const documentRef = doc(db, collectionName, documentId);
@@ -208,6 +208,7 @@ export const fetchItemData = async (collectionName, documentId, itemId) => {
 };
 
 //removing an item from document
+//==============================
 export const removeItemFromDocument = async (collectionName, documentId, itemIdToRemove, itemName, callback) => {
 
   const CATEGORY = documentId.toUpperCase().replace(/_/g, " ");
@@ -255,7 +256,7 @@ export const getCategoriesAndDocuments = async () => {
   return categoryMap;
 };
 
-//fetching title and image for certain category
+//fetching title and image for a certain category
 // ======================================================
 export const getTitleAndImageFromDocument = async () => {
   const collectionRef = collection(db, "collections");
@@ -302,6 +303,7 @@ export const createUserDocumentFromAuth = async (
 };
 
 //creating a new user account using an email and password (wroks together with 'createUserWithEmailAndPassword')
+//==============================================================================================================
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);

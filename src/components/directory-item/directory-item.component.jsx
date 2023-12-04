@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext } from "react";
 import { AdminContext } from "../../contexts/admin.context";
-
+import { productType } from "../../utils/productType/productType";
 
 import { default as Electric } from '../../sounds/electric-guitar.wav';
 
 import "./directory-item.styles.scss";
+
 const DirectoryItem = ({ title, image }) => {
 
   // const audioRef = useRef(null);
@@ -14,18 +15,11 @@ const DirectoryItem = ({ title, image }) => {
   const clearSearchField = () => {
     setSearchField('');
   };
-
-  let productType = title.toString().split(" ")[0].toLowerCase();
-  const array = title.toString().split(" ");
-  const arraySize = array.length;
+  const category = productType(title);
 
   // const playSound = async () => {
   //   audioRef.current.play();
   // };
-
-  if (arraySize === 2) {
-    productType = productType.concat('_guitars')
-  }
 
   return (
     <>
@@ -37,7 +31,7 @@ const DirectoryItem = ({ title, image }) => {
           }}
         />
         <div className="body">
-          <Link to={`/shop/${productType}`}
+          <Link to={`/shop/${category}`}
             //  onMouseEnter={playSound}
             onClick={clearSearchField}
           >
