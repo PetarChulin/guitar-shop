@@ -15,7 +15,7 @@ import { FavoriteContext } from "../../contexts/favorites.context";
 import "./product-card.styles.scss";
 
 const ProductCard = ({ product, documentId }) => {
-  const { id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
+  const { id, name, price, imageUrl, description, showPrice = true, showBtns = false } = product;
   const { addItemToCart, removeItemToCart, cartItems } = useContext(CartContext);
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
@@ -41,6 +41,8 @@ const ProductCard = ({ product, documentId }) => {
   useEffect(() => {
     if (documentId === undefined) {
       showBtnsRef.current = false;
+    } else {
+      showBtnsRef.current = true;
     }
   }, [documentId]);
 

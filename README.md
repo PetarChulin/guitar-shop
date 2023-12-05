@@ -2,6 +2,7 @@
 
 - <a href="#description">Description</a>
 - <a href="#run-app">Run the project</a>
+- <a href="#tech">Tech</a>
 - <a href="#screens">Screenshots</a>
 
 
@@ -22,6 +23,10 @@ You can access the project on: https://guitars-shop.web.app
 download repository from "<>Code" button open it in some IDE (I prefer and recommend VSCode) and run "npm install" then "npm start" in the terminal and the app will start on 'http://localhost:3000'.  You must have NPM installed on your system and Firebase Project with Firestore Database created (it is simple and free to create one). You need also Firebase Authentication with Email/Password and Google sign-in methods enabled.
 All you have to do next is to navigate to /src/utils/firebase/firebase.utils.js and replace 
 the values ​​from line 29 to line 34 with your own found in the section "Project Settings" in your Firebase Project.
+
+# <p id="tech">Tech</p>
+
+- <a href="https://react.dev/">React</a>
 
 # <p id="screens">Screenshots</p>
 

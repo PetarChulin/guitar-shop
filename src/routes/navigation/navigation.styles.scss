@@ -69,18 +69,19 @@
 
     input {
       border: 0;
-      border-color: rgb(44, 6, 44);
       width: 210px;
       height: 30px;
       border-radius: 6px;
-      background-color: rgb(60, 84, 113);
+      background-color: rgb(6, 36, 46);
       color: rgb(255, 255, 255);
+      border: solid 0.2px rgb(8, 58, 109, 0.5);
+
 
     }
 
     ::placeholder {
-      color: rgb(146, 142, 142);
-      opacity: 1;
+      color: rgb(255, 255, 255);
+      opacity: 0.4;
     }
 
     :focus::placeholder {
@@ -89,9 +90,7 @@
 
     input:focus {
       outline: none !important;
-      border: solid 1px white;
-      box-shadow: 0 0 10px #719ECE;
-      background-color: rgb(40, 52, 69);
+      box-shadow: 0 0 5px #3169a4;
     }
 
   }
