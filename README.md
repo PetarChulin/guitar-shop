@@ -27,6 +27,11 @@ the values ​​from line 29 to line 34 with your own found in the section "Pro
 # <p id="tech">Tech</p>
 
 - <a href="https://react.dev/">React</a>
+- <a href="https://reactrouter.com/">React Router</a>
+- <a href="https://firebase.google.com/">Firebase</a>
+- <a href="https://sweetalert2.github.io/">Sweetalert 2</a>
+- <a href="https://firebase.google.com/docs/firestore">Firebase Firestore</a>
+- <a href="https://firebase.google.com/docs/auth">Firebase Authentication</a>
 
 # <p id="screens">Screenshots</p>
 
