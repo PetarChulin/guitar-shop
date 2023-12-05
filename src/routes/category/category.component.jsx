@@ -11,6 +11,7 @@ import { getCategoriesAndDocuments, removeSectionFromCollection } from "../../ut
 import { AdminContext } from "../../contexts/admin.context";
 import { TypeContext } from "../../contexts/type.context";
 import "./category.styles.scss";
+import DeleteCategoryConfirmModal from "../../components/delete-category-confirm-modal/delete-category-confirm-modal";
 
 const Category = () => {
   const { category } = useParams();
@@ -19,6 +20,7 @@ const Category = () => {
   const { isAdmin } = useContext(AdminContext);
 
   const [products, setProducts] = useState(categoriesMap[category]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const CATEGORY = category.toUpperCase().replace(/_/g, " ");
 
@@ -28,25 +30,14 @@ const Category = () => {
     const collectionKey = "collections";
     const sectionTitleToRemove = category;
 
-    Swal.fire({
-      title: `Delete ${CATEGORY}, are you sure?`,
-      showDenyButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: 'No',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        removeSectionFromCollection(collectionKey, sectionTitleToRemove, async () => {
-          const updatedCategories = await getCategoriesAndDocuments('collections');
-          setCategoriesMap(updatedCategories);
-          navigate('/shop');
-          Swal.fire({
-            title: `${CATEGORY} removed from collection successfully!`,
-            timer: 3000
-          });
-        });
-      } else if (result.isDenied) {
-        return;
-      }
+    removeSectionFromCollection(collectionKey, sectionTitleToRemove, async () => {
+      const updatedCategories = await getCategoriesAndDocuments('collections');
+      setCategoriesMap(updatedCategories);
+      navigate('/shop');
+      Swal.fire({
+        title: `${CATEGORY} removed from collection successfully!`,
+        timer: 3000
+      });
     });
   };
 
@@ -61,14 +52,12 @@ const Category = () => {
     setType(category);
   }, [type]);
 
-
-
   return (
     <Fragment>
       {isAdmin ? (
         <div className="buttons-container">
           <Button buttonType='neon'
-            onClick={removeSectionFromCollectionDB}
+            onClick={() => { setShowDeleteModal(true) }}
           >
             Delete {CATEGORY} from DB
           </Button>
@@ -79,7 +68,7 @@ const Category = () => {
       )}
       <br />
       <div className="category-container">
-        {products ? (
+        {products.length > 0 ? (
           products.map((product) => (
             <ProductCard
               key={product.id}
@@ -91,6 +80,10 @@ const Category = () => {
           <h2 className="no-items">There are no products</h2>
         )}
       </div>
+      {showDeleteModal && <DeleteCategoryConfirmModal
+        category={CATEGORY}
+        deleteCategory={removeSectionFromCollectionDB}
+        closeModal={() => setShowDeleteModal(false)} />}
     </Fragment>
   );
 };

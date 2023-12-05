@@ -59,6 +59,7 @@
       background-color:rgb(166, 169, 171);
       color: rgb(31, 69, 81);
     }
+    
   }
 
   &.edit {
@@ -73,13 +74,12 @@
   }
 
   &.remove {
-    background-color: rgb(206, 54, 54);
+    background-color: rgb(224, 102, 102);
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 255, 255);
+    border: 1px solid rgb(239, 210, 210);
 
     &:hover {
-      background-color: rgb(255, 255, 255);
-      color: rgb(50, 3, 14);
+      background-color: rgb(142, 2, 2);
     }
   }
 }

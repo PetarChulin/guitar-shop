@@ -21,6 +21,7 @@ const ProductCard = ({ product, documentId }) => {
   const { currentUser } = useContext(UserContext);
   const { favoriteItems, setFavoriteItems, addItemToFavorites, removeItemFromFavorites } = useContext(FavoriteContext);
   const { categoriesMap, setCategoriesMap } = useContext(CategoriesContext);
+
   const [showEditForm, setShowEditForm] = useState(false);
 
   const cartItem = cartItems.find((item) => item.id === product.id);
@@ -36,7 +37,6 @@ const ProductCard = ({ product, documentId }) => {
   const removeProductFromFavorites = () => removeItemFromFavorites(product);
 
   const showBtnsRef = useRef(showBtns);
-console.log(categoriesMap);
 
   useEffect(() => {
     if (documentId === undefined) {
