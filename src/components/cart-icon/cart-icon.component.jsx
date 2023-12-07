@@ -14,9 +14,10 @@ const CartIcon = ({ clearOpen }) => {
   const toggleIsCartOpen = () => setIsCartOpen(!isCartOpen);
 
   return (
-    <div className='cart-icon-container'  onClick={() => { toggleIsCartOpen(); clearOpen();}}>
-      <img src={Image2} className='shopping-icon' />
-      <span className='item-count'>{cartCount}</span>
+    <div className='cart-icon-container' onClick={() => { toggleIsCartOpen(); clearOpen(); }}>
+      <img src={Image2} className='shopping-icon' title='go to checkout' />
+      {cartCount > 0 ? <span className='item-count'>{cartCount}</span>
+        : <div className='cart-text'>CART</div>}
     </div>
   );
 };

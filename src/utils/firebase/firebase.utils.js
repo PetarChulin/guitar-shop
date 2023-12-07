@@ -27,6 +27,7 @@ import ConfirmModal from "../../components/confirm-modal/confirm-modal";
 import SignInOutToast from "../../components/sign-in-form/sign-in-out.toast";
 
 const firebaseConfig = {
+
   apiKey: "your_apiKey",
   authDomain: "your_authDomain",
   projectId: "your_projectId",

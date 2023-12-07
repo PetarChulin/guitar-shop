@@ -15,12 +15,12 @@ import { FavoriteContext } from "../../contexts/favorites.context";
 import "./product-card.styles.scss";
 
 const ProductCard = ({ product, documentId }) => {
-  const { id, name, price, imageUrl, description, showPrice = true, showBtns = false } = product;
+  const { id, name, price, imageUrl, description, showPrice = true, showBtns = true } = product;
   const { addItemToCart, removeItemToCart, cartItems } = useContext(CartContext);
   const { isAdmin } = useContext(AdminContext);
   const { currentUser } = useContext(UserContext);
-  const { favoriteItems, setFavoriteItems, addItemToFavorites, removeItemFromFavorites } = useContext(FavoriteContext);
-  const { categoriesMap, setCategoriesMap } = useContext(CategoriesContext);
+  const { favoriteItems, addItemToFavorites, removeItemFromFavorites } = useContext(FavoriteContext);
+  const { setCategoriesMap } = useContext(CategoriesContext);
 
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -107,8 +107,8 @@ const ProductCard = ({ product, documentId }) => {
         {currentUser && !isAdmin && (
           <>
             {!isFavorite
-              ? <img src={Img} alt="Favorite" className="favorite-icon" onClick={addProductToFavorites} />
-              : <img src={ImgBlack} alt="Favorite" className="favorite-icon" onClick={removeProductFromFavorites} />}
+              ? <img src={Img} alt="Favorite" className="favorite-icon" title="add to favorites" onClick={addProductToFavorites} />
+              : <img src={ImgBlack} alt="Favorite" className="favorite-icon" title="remove from favorites" onClick={removeProductFromFavorites} />}
           </>)}
         <div className="footer">
           <span className="name">{name}</span>

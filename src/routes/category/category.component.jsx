@@ -55,6 +55,8 @@ const Category = () => {
   return (
     <Fragment>
       {isAdmin ? (
+      <>
+        <h2 className="category-title">You are in {CATEGORY} section</h2>
         <div className="buttons-container">
           <Button buttonType='neon'
             onClick={() => { setShowDeleteModal(true) }}
@@ -63,6 +65,7 @@ const Category = () => {
           </Button>
           <Link to={`/add-item-input-form`}><Button buttonType='neon'>Add new item to {CATEGORY}</Button></Link>
         </div>
+        </>
       ) : (
         <h2 className="category-title">{CATEGORY}</h2>
       )}

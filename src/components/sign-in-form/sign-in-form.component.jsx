@@ -26,7 +26,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-  const { setIsAdmin } = useContext(AdminContext);
+  const { isAdmin, setIsAdmin } = useContext(AdminContext);
   const { cartItems } = useContext(CartContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
@@ -50,7 +50,6 @@ const SignInForm = () => {
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
     navigate('/shop');
-
   };
 
   const handleSubmit = async (event) => {
@@ -60,7 +59,12 @@ const SignInForm = () => {
       await signInAuthUserWithEmailAndPassword(email, password, cartItems);
       resetFormFields();
       SignInOutToast(email, 'signed in successfully.', "success", "bottom-left");
-      navigate('/shop');
+      
+      if(isAdmin) {
+        navigate('/')
+      } else {
+        navigate('/shop');
+      };
 
 
     } catch (error) {

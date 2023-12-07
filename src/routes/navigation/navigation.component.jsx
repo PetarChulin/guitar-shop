@@ -108,25 +108,34 @@ const Navigation = () => {
   return (
     <Fragment>
       <div className="navigation">
-        <Link className="logo-container" to="/" title="go to home" onClick={clearSearchField}>
-          <img src={Guitar} alt="" style={{ width: '130px', height: '130px' }} />
-        </Link>
+        {!isAdmin &&
+          <Link className="logo-container" to="/" title="go to home" onClick={clearSearchField}>
+            <img src={Guitar} alt="" style={{ width: '130px', height: '130px' }} />
+          </Link>}
         <div className="title-container">Guitar Shop</div>
         {currentUser && <div className="welcome-container">Welcome {extractedName}</div>}
         <div className="nav-links-container">
-          {isAdmin ? <Link className="nav-link" to="/admin">
-            <span className="nav-link">
-              ADMIN
-            </span>
-          </Link> :
+          {isAdmin ?
             <>
+            <Link className="nav-link" to="/">
+                HOME
+            </Link> :
+              <Link className="nav-link" to="/shop">
+                  ADMIN PANEL
+              </Link>
+            </>
+            :
+            <>
+              <Link className="nav-link" to="/" onClick={() => { setAdminFalse(); clearSearchField(); }}>
+                HOME
+              </Link>
               <Link className="nav-link" to="/shop" onClick={() => { setAdminFalse(); clearSearchField(); }}>
                 SHOP
               </Link>
             </>}
           {currentUser ? (
             <>
-              { !isAdmin && <Link className="nav-link" to="/favorites" onClick={() => { clearSearchField(); }}>
+              {!isAdmin && <Link className="nav-link" to="/favorites" onClick={() => { clearSearchField(); }}>
                 FAVORITES
                 {/* <img src={Img} /> */}
                 {favoriteItems.length > 0 && <span className="favorite-count">{favorites}</span>}
@@ -136,9 +145,14 @@ const Navigation = () => {
               </span>
             </>
           ) : (
-            <Link className="nav-link" to="/signin" onClick={clearSearchField}>
-              SIGN IN
-            </Link>
+            <>
+              <Link className="nav-link" to="/signin" onClick={clearSearchField}>
+                SIGN IN
+              </Link>
+              <Link className="nav-link" to="/signup" onClick={clearSearchField}>
+                SIGN UP
+              </Link>
+            </>
           )}
           {!isAdmin && currentUser && <CartIcon clearOpen={clearSearchField} />}
         </div>

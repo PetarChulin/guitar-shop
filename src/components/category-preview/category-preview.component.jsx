@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import ProductCard from '../product-card/product-card.component';
 
 import './category-preview.styles.scss';
+import { useContext } from 'react';
+import { AdminContext } from '../../contexts/admin.context';
 
 const CategoryPreview = ({ title, products }) => {
+
+  const { isAdmin } = useContext(AdminContext);
 
   const CATEGORY = title.toUpperCase().replace(/_/g, " ");
 
@@ -15,13 +19,13 @@ const CategoryPreview = ({ title, products }) => {
           {CATEGORY}
         </Link>
       </h2>
-      <div className='preview'>
+      { !isAdmin && <div className='preview'>
         {products
           .filter((_, idx) => idx < 5)
           .map((product) => (
             <ProductCard key={product.id} product={product} title={title}/>
           ))}
-      </div>
+      </div>}
     </div>
   );
 };
