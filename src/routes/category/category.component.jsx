@@ -2,6 +2,7 @@ import { useContext, useState, useEffect, Fragment } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
 
+import DeleteCategoryConfirmModal from "../../components/delete-category-confirm-modal/delete-category-confirm-modal";
 import ProductCard from "../../components/product-card/product-card.component";
 import Button from "../../components/button/button.component";
 
@@ -10,8 +11,8 @@ import { getCategoriesAndDocuments, removeSectionFromCollection } from "../../ut
 
 import { AdminContext } from "../../contexts/admin.context";
 import { TypeContext } from "../../contexts/type.context";
+
 import "./category.styles.scss";
-import DeleteCategoryConfirmModal from "../../components/delete-category-confirm-modal/delete-category-confirm-modal";
 
 const Category = () => {
   const { category } = useParams();
@@ -70,8 +71,9 @@ const Category = () => {
         <h2 className="category-title">{CATEGORY}</h2>
       )}
       <br />
+      <div style={{marginBottom: '70px'}}>
       <div className="category-container">
-        {products.length > 0 ? (
+        {products && products.length > 0 ? (
           products.map((product) => (
             <ProductCard
               key={product.id}
@@ -82,6 +84,7 @@ const Category = () => {
         ) : (
           <h2 className="no-items">There are no products</h2>
         )}
+      </div>
       </div>
       {showDeleteModal && <DeleteCategoryConfirmModal
         category={CATEGORY}

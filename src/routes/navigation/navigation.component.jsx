@@ -119,7 +119,7 @@ const Navigation = () => {
             <>
             <Link className="nav-link" to="/">
                 HOME
-            </Link> :
+            </Link>
               <Link className="nav-link" to="/shop">
                   ADMIN PANEL
               </Link>
