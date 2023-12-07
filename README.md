@@ -12,9 +12,9 @@ This is a simple demo app made with React. It uses the Firebase/Firestore databa
 
 # <p id="run-app">Run the project</p>
 
-You can access the project on: https://guitars-shop.web.app
+You can access the project at: https://guitars-shop.web.app
                     or
-download repository from "<>Code" button open it in some IDE (I prefer and recommend VSCode) and run "npm install" then "npm start" in the terminal and the app will start on 'http://localhost:3000'.  You must have NPM installed on your system and Firebase Project with Firestore Database created (it is simple and free to create one). You need also Firebase Authentication with Email/Password and Google sign-in methods enabled.
+download the repository from the "<>Code" button open it in some IDE (I prefer and recommend VSCode) and run "npm install" and then "npm start" in the terminal and the app will start on 'http://localhost:3000'.  You must have NPM installed on your system and Firebase Project with Firestore Database created (it is simple and free to create one). You need also Firebase Authentication with Email/Password and Google sign-in methods enabled.
 All you have to do next is to navigate to /src/utils/firebase/firebase.utils.js and replace 
 the values ​​from line 29 to line 34 with your own found in the section "Project Settings" in your Firebase Project.
 
