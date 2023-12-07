@@ -22,7 +22,7 @@ const Favorites = () => {
     const favorites = favoriteItems.length > 0;
 
     return (
-        <section >
+        <section className="product-container">
             {favorites && <h2 className="category-title">{`${extractedName}'S FAVORITES`}</h2>}
             <Swiper
                 navigation={true} modules={[Navigation]}

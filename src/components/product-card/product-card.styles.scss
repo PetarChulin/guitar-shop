@@ -55,6 +55,7 @@
 
     .favorite-icon {
       opacity: 1;
+      z-index: 200;
      
       &:hover {
         filter: invert(100%);
