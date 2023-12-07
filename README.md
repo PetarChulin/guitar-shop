@@ -1,12 +1,12 @@
 ## GUITAR SHOP 
 
-- <a href="#description">Description</a>
+- <a href="#about">About this project</a>
 - <a href="#run-app">Run the project</a>
 - <a href="#tech">Tech</a>
 - <a href="#screens">Screenshots</a>
 
 
-# <p id="description">Description</p>
+# <p id="about">About this project</p>
 
 This is a simple demo app made with React. It uses Firebase/Firestore database to manage data.
 The purpose of the application is to demonstrate the very basic functionalities of an e-shop using CRUD operations.
