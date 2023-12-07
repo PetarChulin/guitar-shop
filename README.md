@@ -32,7 +32,7 @@ the values ​​from line 29 to line 34 with your own found in the section "Pro
 - <a href="https://sweetalert2.github.io/">Sweetalert 2</a>
 - <a href="https://firebase.google.com/docs/firestore">Firebase Firestore</a>
 - <a href="https://firebase.google.com/docs/auth">Firebase Authentication</a>
-- <a href="https://https://swiperjs.com/">Swiper</a>
+- <a href="https://swiperjs.com/">Swiper</a>
 
 # <p id="screens">Screenshots</p>
 
