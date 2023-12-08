@@ -7,11 +7,11 @@
     font-size: 55px;
     margin-bottom: 25px;
     text-align: center;
+
 }
 
 .product-container {
     margin-top: 50px;
-    width: 80%;
     column-gap: 10px;
     row-gap: 50px;
 }
@@ -24,7 +24,7 @@
     align-items: center;
     position: relative;
     margin-bottom: 5px;
-
+    cursor: pointer;
 
 
 
@@ -61,10 +61,10 @@
 
     &:hover {
         img {
-            opacity: 0.3;
-            // border: solid 4px rgb(31, 69, 81);
-            // border-radius: 20px;
-            // box-shadow: 1px 2px 2px 2px rgb(166, 169, 171);
+            // opacity: 0.3;
+            border: solid 4px rgb(31, 69, 81);
+            border-radius: 20px;
+            box-shadow: 1px 2px 2px 2px rgb(166, 169, 171);
         }
 
         button {

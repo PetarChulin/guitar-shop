@@ -1,0 +1,46 @@
+.swiper {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    height: 615px;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .swiper-pagination-bullet {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    color: rgb(37, 82, 96);
+    opacity: 1;
+    background-color: rgb(18, 40, 46);
+  }
+  
+  .swiper-pagination-bullet-active {
+    margin-top: 40px;
+    color: #fff;
+    background-color: #3d566e;
+  }
+
+  .swiper-pagination-bullet:hover {
+    margin-top: 40px;
+    color: #858080;
+    background-color: #d8dce1;
+  }

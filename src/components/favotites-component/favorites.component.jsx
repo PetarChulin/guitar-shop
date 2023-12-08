@@ -4,14 +4,15 @@ import { UserContext } from "../../contexts/user.context";
 
 import ProductCard from "../product-card/product-card.component";
 
+import { Navigation, Pagination } from "swiper";
 import { nameExtract } from "../../utils/nameExtract";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { EffectCoverflow, Navigation, Pagination } from "swiper";
 
 import "./swiper-bundle.min.css"
 import "./favorites.styles.scss";
+import "swiper/css/pagination";
+import "./swiper.scss";
 
-SwiperCore.use([EffectCoverflow, Pagination]);
 
 const Favorites = () => {
 
@@ -21,44 +22,41 @@ const Favorites = () => {
     const extractedName = nameExtract(username);
     const favorites = favoriteItems.length > 0;
 
+    const pagination = {
+        clickable: true,
+        renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + "</span>";
+        },
+    };
+
     return (
         <section className="product-container">
-            {favorites && <h2 className="category-title">{`${extractedName}'S FAVORITES`}</h2>}
+            {favorites ? <h2 className="category-title">{`${extractedName}'S FAVORITES`}</h2>
+                : <h2 className="no-items">There are no favorites</h2>}
             <Swiper
-                navigation={true} modules={[Navigation]}
-                spaceBetween={30}
-                slidesPerView={3}
-                coverflowEffect={{
-                    rotate: 40,
-                    stretch: 0,
-                    depth: 10,
-                    modifier: 1,
-                    slideShadows: true,
-                }}
-                effect={"coverflow"}
-                grabCursor={true}
+                pagination={pagination}
+                modules={[Pagination, Navigation]}
+                slidesPerView={4}
+                spaceBetween={5}
                 centeredSlides={true}
-                pagination={true}
-                className="swiper"
+                slideToClickedSlide={true}
             >
-                {favorites ? (
+                {favorites && (
                     favoriteItems.map((favoriteItem) => {
                         return (
                             <SwiperSlide >
-                                    <div className="product-container">
+                                <div className="product-container">
                                     <div className="product-card-container">
                                         <ProductCard
                                             key={favoriteItem.id}
                                             product={favoriteItem}
                                         />
                                     </div>
-                            </div>
-                                </SwiperSlide>
+                                </div>
+                            </SwiperSlide>
                         )
                     }))
-                    : (
-                        <h2 className="no-items">There are no favorites</h2>
-                    )}
+                }
             </Swiper>
         </section>
     );

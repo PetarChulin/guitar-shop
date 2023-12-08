@@ -18,7 +18,6 @@ import { nameExtract } from "../../utils/nameExtract";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import { default as Guitar } from "../../assets/guitar-logo.png"
-import { default as Img } from "../../assets/like.png"
 
 import "./navigation.styles.scss";
 
@@ -137,7 +136,6 @@ const Navigation = () => {
             <>
               {!isAdmin && <Link className="nav-link" to="/favorites" onClick={() => { clearSearchField(); }}>
                 FAVORITES
-                {/* <img src={Img} /> */}
                 {favoriteItems.length > 0 && <span className="favorite-count">{favorites}</span>}
               </Link>}
               <span className="nav-link" onClick={() => { signOut(); clearSearchField(); }}>
