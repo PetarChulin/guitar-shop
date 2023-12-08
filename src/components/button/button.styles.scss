@@ -1,10 +1,9 @@
 .button-container {
-  // min-width: 165px;
   width: fit-content;
   height: 50px;
   letter-spacing: 0.5px;
   line-height: 50px;
-  padding: 20px 20px 20px 20px;
+  padding: 20px 10px 20px 10px;
   font-size: 15px;
   background-color: black;
   color: white;
@@ -18,13 +17,12 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
 
   &:hover {
-    transition: all 0.5s ease-out;
+    transition: all 0.2s ease-out;
     background-color: white;
     color: black;
-    // border: 1px solid black;
   }
 
   &.google-sign-in {
@@ -37,17 +35,6 @@
     }
   }
 
-  // &.inverted {
-  //   background-color: white;
-  //   color: black;
-  //   border: 1px solid black;
-
-  //   &:hover {
-  //     background-color: rgb(63, 56, 70);
-  //     color: white;
-  //     border: none;
-  //   }
-  // }
 
   &.neon {
     background-color: rgb(31, 69, 81);
@@ -56,21 +43,12 @@
     border: 1px solid rgb(166, 169, 171);
 
     &:hover {
-      background-color:rgb(166, 169, 171);
+      background-color: rgb(166, 169, 171);
       color: rgb(31, 69, 81);
-    }
-    
-  }
+      border: 1px solid rgb(31, 69, 81);
 
-  &.edit {
-    background-color: rgb(201, 106, 43);
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 255, 255);
-
-    &:hover {
-      background-color: rgb(230, 169, 169);
-      color: rgb(31, 69, 81);
     }
+
   }
 
   &.remove {

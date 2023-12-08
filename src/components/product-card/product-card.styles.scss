@@ -42,7 +42,7 @@
 
   &:hover {
     img {
-      opacity: 0.6;
+      opacity: 0.8;
       border: solid 4px rgb(31, 69, 81);
       border-radius: 20px;
       box-shadow: 1px 2px 2px 2px rgb(166, 169, 171);
@@ -51,6 +51,7 @@
     button {
       opacity: 1;
       display: flex;
+      filter: brightness(120%);
     }
 
     .favorite-icon {
