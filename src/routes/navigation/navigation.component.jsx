@@ -29,6 +29,7 @@ const Navigation = () => {
 
   const [names, setNames] = useState([]);
   const [filteredNames, setFilteredNames] = useState([]);
+  const [stickyClass, setStickyClass] = useState('');
 
   const navigate = useNavigate();
   const inputRef = useRef(null);
@@ -36,6 +37,16 @@ const Navigation = () => {
 
   const extractedName = nameExtract(username);
 
+  useEffect(() => {
+   
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [searchField]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', stickNavbar);
+    return () => window.removeEventListener('scroll', stickNavbar);
+  }, []);
+  
   useEffect(() => {
     const fetchData = async () => {
 
@@ -80,6 +91,13 @@ const Navigation = () => {
     }, 1200);
   };
 
+  const stickNavbar = () => {
+    if (window !== undefined) {
+      let windowHeight = window.scrollY;
+      windowHeight > 50 ? setStickyClass('sticky-navigation') : setStickyClass('');
+    }
+  };
+
   const clearSearchField = () => {
 
     setSearchField('');
@@ -106,8 +124,8 @@ const Navigation = () => {
 
   return (
     <Fragment>
-      <div className="navigation">
-        {!isAdmin &&
+      <div className={`navigation ${stickyClass}`}>
+        {!isAdmin && !stickyClass &&
           <Link className="logo-container" to="/" title="go to home" onClick={clearSearchField}>
             <img src={Guitar} alt="" style={{ width: '130px', height: '130px' }} />
           </Link>}

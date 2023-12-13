@@ -39,8 +39,13 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (displayName.includes(' ')) {
+      ConfirmModal('Display name must not contain empty spaces!');
+      return;
+    }
+
     if (password !== confirmPassword) {
-      ConfirmModal('Error, passwords don\'t match');
+      ConfirmModal('Error, passwords don\'t match!');
       return;
     }
 

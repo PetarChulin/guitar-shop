@@ -1,5 +1,6 @@
 .navigation {
-  background-color: rgb(11, 32, 39, 0.5);
+  background-color: rgb(11, 32, 39);
+  // filter: opacity(70%);
   // border: solid 0.5px rgb(119, 118, 118);
   height: 160px;
   width: 100%;
@@ -10,9 +11,11 @@
   border-radius: 6px;
   z-index: 80;
 
-  &:hover {
-    background-color: rgb(11, 32, 39);
-  }
+  // &:hover {
+  // background-image: url(../../assets/cubes.jpg);
+  //   background-color: rgb(11, 32, 39);
+  //   filter: opacity(100%);
+  // }
 
   .logo-container {
     height: 100%;
@@ -71,7 +74,7 @@
       border: 0;
       width: 210px;
       height: 30px;
-      border-radius: 6px;
+      border-radius: 16px;
       background-color: rgb(6, 36, 46);
       color: rgb(255, 255, 255);
       border: solid 0.2px rgb(8, 58, 109, 0.5);
@@ -94,6 +97,15 @@
     }
 
   }
+}
+
+.sticky-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 1px 2px 12px black;
+  border-radius: 0px;
+  height: 110px;
 }
 
 .filtered-items-container {

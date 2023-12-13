@@ -3,7 +3,7 @@ const Footer = () => {
 
     const year = new Date().getFullYear();
 
-    return <footer>{`Copyright © PetarChulin Code ${year}`}
+    return <footer style={{backgroundColor: 'rgb(11, 32, 39)', left: '0', borderRadius: '0px', boxShadow: '1px 2px 12px black'}}>{`Copyright © PetarChulin Code ${year}`}
     {" "}
     <a href='https://github.com/petarchulin'><BsGithub/></a>
     {" "}
